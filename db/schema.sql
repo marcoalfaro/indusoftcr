@@ -1,9 +1,17 @@
-CREATE DATABASE indusoftcr;    
+/*
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO public;
 
+
+CREATE DATABASE indusoftcr;    
+*/
 CREATE TABLE Empresa
 (
     Id serial NOT NULL PRIMARY KEY,
-    Name text NOT NULL
+    Nombre text NOT NULL,
+	Activo bool NOT NULL DEFAULT false
 );
 
 CREATE TABLE EmpresaConfig
@@ -15,8 +23,7 @@ CREATE TABLE EmpresaConfig
 	Fax text NULL,
 	Email text NULL,
 	Utilidad decimal(10,2) NOT NULL,
-	ImpuestoVenta decimal(5,2) NOT NULL,
-	Activo bool NOT NULL DEFAULT false,
+	ImpuestoVenta decimal(5,2) NOT NULL,	
 	PrecioMolde decimal(15,2) NOT NULL DEFAULT 0,
 	PrecioTinta decimal(15,2) NOT NULL DEFAULT 0,
 	PrecioPositivo decimal(15,2) NOT NULL DEFAULT 0,
@@ -94,13 +101,21 @@ CREATE TABLE Usuario(
 	Activo bool NOT NULL DEFAULT false
 );
 
+CREATE TABLE TipoCambio(
+	Id serial NOT NULL PRIMARY KEY,
+    EmpresaId int NOT NULL REFERENCES Empresa,
+	Fecha TIMESTAMP NOT NULL,
+	Monto decimal(15,2) NOT NULL
+);
+
 CREATE TABLE Cotizacion(
     Id serial NOT NULL PRIMARY KEY,
     EmpresaId int NOT NULL REFERENCES Empresa,
 	ClienteId int NOT NULL REFERENCES Cliente,
 	UsuarioId int NOT NULL REFERENCES Usuario,
-	VendedorId int NULL REFERENCES Vendedor,
-	MaterialId int NULL REFERENCES Material,
+	VendedorId int NOT NULL REFERENCES Vendedor,
+	MaterialId int NOT NULL REFERENCES Material,
+	TipoCambioId int NOT NULL REFERENCES TipoCambio,
 	LineaId int NULL,
 	Fecha timestamp NULL,
 	PrecioUnitario decimal(15,2) NULL,
@@ -117,10 +132,9 @@ CREATE TABLE Cotizacion(
 	Troquel decimal(10, 2) NULL,
 	Doblez decimal(10, 2) NULL,
 	Cuatricromia decimal(10, 2) NULL,
-	Otro decimal(10, 2) NULL,
-	Evento bit NULL,
+	Otro decimal(10, 2) NULL,	
 	PorcEvento decimal(10, 2) NULL,
-	Aplicada bit NULL,
+	Aplicada bool NULL,
 	FecAplicada timestamp NULL,
 	FecRegistro timestamp NULL,
 	NumPedido text NULL,
@@ -134,8 +148,7 @@ CREATE TABLE Cotizacion(
 	PrecioSolvente decimal(15,2) NULL,
 	Rendimiento decimal(10, 2) NULL,
 	Laminas decimal(10, 2) NULL,
-	Observacion text NULL,
-	TipoCambioId int NULL,
+	Observacion text NULL,	
 	DivLargo decimal(10, 2) NULL,
 	DivAncho decimal(10, 2) NULL
 );
