@@ -31,7 +31,8 @@ CREATE TABLE EmpresaConfig
 	PrecioSolvente decimal(15,2) NOT NULL DEFAULT 0,
 	PrecioCorte decimal(15,2) NOT NULL DEFAULT 0,
 	PrecioVelocidad decimal(15,2) NOT NULL DEFAULT 0,
-	PrecioHoraImpresion decimal(15,2) NOT NULL DEFAULT 0      
+	PrecioHoraImpresion decimal(15,2) NOT NULL DEFAULT 0,
+	Activo bool NOT NULL DEFAULT true      
 );
 
 CREATE TABLE Cliente
@@ -45,14 +46,14 @@ CREATE TABLE Cliente
 	ContactoTelefono text NULL,
 	ContactoExtension text NULL,
 	ContactoCorreo text NULL,	
-	Activo bool NOT NULL DEFAULT false
+	Activo bool NOT NULL DEFAULT true
 );
 
 CREATE TABLE Linea(
 	Id serial NOT NULL PRIMARY KEY,
 	EmpresaId int NOT NULL REFERENCES Empresa,
     Nombre text NOT NULL,	
-	Activo bool NOT NULL DEFAULT false
+	Activo bool NOT NULL DEFAULT true
 );
 
 CREATE TABLE Material(
@@ -63,7 +64,7 @@ CREATE TABLE Material(
 	Base decimal(10, 2) NULL,
 	CodigoInventario text NULL,
 	CostoInventario decimal(15,2) NULL,
-	Activo bool NOT NULL DEFAULT false
+	Activo bool NOT NULL DEFAULT true
 );
 
 CREATE TABLE Precio(
@@ -76,7 +77,8 @@ CREATE TABLE Precio(
 	Solvente decimal(15,2) NOT NULL,
 	Corte decimal(15,2) NOT NULL,
 	Velocidad decimal(15,2) NOT NULL,
-	HoraImpresion decimal(15,2) NOT NULL
+	HoraImpresion decimal(15,2) NOT NULL,
+	Activo bool NOT NULL DEFAULT true
 );
 
 CREATE TABLE Vendedor(
@@ -86,7 +88,7 @@ CREATE TABLE Vendedor(
 	Email text NULL,
 	Telefono text NULL,
 	Beeper text NULL,
-	Activo bool NOT NULL DEFAULT false
+	Activo bool NOT NULL DEFAULT true
 );
 
 CREATE TABLE Usuario(
@@ -98,14 +100,15 @@ CREATE TABLE Usuario(
 	Cotizar bool NOT NULL,
 	Borrar bool NOT NULL,
 	Crear bool NOT NULL,
-	Activo bool NOT NULL DEFAULT false
+	Activo bool NOT NULL DEFAULT true
 );
 
 CREATE TABLE TipoCambio(
 	Id serial NOT NULL PRIMARY KEY,
     EmpresaId int NOT NULL REFERENCES Empresa,
 	Fecha TIMESTAMP NOT NULL,
-	Monto decimal(15,2) NOT NULL
+	Monto decimal(15,2) NOT NULL,
+	Activo bool NOT NULL DEFAULT true
 );
 
 CREATE TABLE Cotizacion(
@@ -150,5 +153,6 @@ CREATE TABLE Cotizacion(
 	Laminas decimal(10, 2) NULL,
 	Observacion text NULL,	
 	DivLargo decimal(10, 2) NULL,
-	DivAncho decimal(10, 2) NULL
+	DivAncho decimal(10, 2) NULL,
+	Activo bool NOT NULL DEFAULT true
 );
