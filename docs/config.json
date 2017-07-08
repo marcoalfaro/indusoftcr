@@ -3,7 +3,7 @@
   "locals": {
     "url": "http://localhost:8080",
     "name": "ng2-admin blog",
-    "owner": "Akveo",
+    "owner": "ALSA",
     "description": ""
   },
   "plugins": [

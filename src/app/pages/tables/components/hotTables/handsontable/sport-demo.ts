@@ -6,9 +6,9 @@ import { getSportData } from './data';
   templateUrl: './sport-demo.html'
 })
 export class SportDemoComponent {
-   data: Array<any>;
-   colHeaders: Array<string>;
-   options: any;
+  data: any[];
+  colHeaders: string[];
+  options: any;
 
   constructor() {
     this.data = getSportData();
@@ -22,14 +22,14 @@ export class SportDemoComponent {
       contextMenu: true,
       autoWrapRow: true,
       columns: [
-        {data: 0, type: 'numeric'},
-        {data: 1, type: 'text'},
-        {data: 2, renderer: 'html', width: 200},
-        {data: 3, type: 'numeric', format: '$0,0.00'},
-        {data: 4, type: 'numeric', format: '0.00%'},
-        {data: 5, type: 'numeric', format: '0.00%'},
-        {data: 6, type: 'numeric', format: '$0,0.00'},
-        {data: 7, type: 'numeric', format: '$0,0.00'}
+        { data: 0, type: 'numeric' },
+        { data: 1, type: 'text' },
+        { data: 2, renderer: 'html', width: 200 },
+        { data: 3, type: 'numeric', format: '$0,0.00' },
+        { data: 4, type: 'numeric', format: '0.00%' },
+        { data: 5, type: 'numeric', format: '0.00%' },
+        { data: 6, type: 'numeric', format: '$0,0.00' },
+        { data: 7, type: 'numeric', format: '$0,0.00' }
       ],
       cells: function (row, col, prop) {
         let cellProperties: any = {};

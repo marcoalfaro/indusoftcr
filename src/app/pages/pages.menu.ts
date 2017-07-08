@@ -13,29 +13,7 @@ export const PAGES_MENU = [
             order: 0
           }
         }
-      },
-      {
-        path: 'editors',
-        data: {
-          menu: {
-            title: 'general.menu.editors',
-            icon: 'ion-edit',
-            selected: false,
-            expanded: false,
-            order: 100,
-          }
-        },
-        children: [
-          {
-            path: 'ckeditor',
-            data: {
-              menu: {
-                title: 'general.menu.ck_editor',
-              }
-            }
-          }
-        ]
-      },
+      },      
       {
         path: 'components',
         data: {

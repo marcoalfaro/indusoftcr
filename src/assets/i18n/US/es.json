@@ -12,7 +12,7 @@
     "share_on_google_plus": "Share on Google Plus"
   },
   "general": {
-    "akveo": "Akveo",
+    "akveo": "ALSA",
     "home": "Home",
     "forms": {
       "option1": "Option 1"
@@ -52,9 +52,8 @@
     "created_with": "Created with"
   },
   "dashboard": {
-    "acquisition_channels": "Acquisition Channels",
-    "users_by_country": "Users by Country",    
-    "todo_list": "To Do List",    
+    "acquisition_channels": "Cotizaciones Recientes",
+    "users_by_country": "Users by Country",        
     "new_visits": "New Visits",
     "purchases": "Purchases",
     "active_users": "Active Users",

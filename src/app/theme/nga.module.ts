@@ -1,5 +1,5 @@
-import { NgModule, ModuleWithProviders }      from '@angular/core';
-import { CommonModule }  from '@angular/common';
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgUploaderModule } from 'ngx-uploader';
@@ -19,8 +19,7 @@ import {
   BaCard,
   BaChartistChart,
   BaCheckbox,
-  BaContentTop,
-  BaFullCalendar,
+  BaContentTop,  
   BaMenuItem,
   BaMenu,
   BaMsgCenter,
@@ -63,8 +62,7 @@ const NGA_COMPONENTS = [
   BaCard,
   BaChartistChart,
   BaCheckbox,
-  BaContentTop,
-  BaFullCalendar,
+  BaContentTop,  
   BaMenuItem,
   BaMenu,
   BaMsgCenter,
