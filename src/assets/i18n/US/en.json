@@ -18,11 +18,9 @@
       "option1": "Option 1"
     },
     "menu": {
-      "dashboard": "Dashboard",            
-      "components": "Components",
+      "dashboard": "Dashboard",
       "tree_view": "Tree View",
-      "charts": "Charts",
-      "chartist_js": "Chartist.Js",
+      "charts": "Charts",      
       "ui_features": "UI Features",
       "typography": "Typography",
       "buttons": "Buttons",

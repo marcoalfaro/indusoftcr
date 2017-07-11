@@ -12,17 +12,23 @@
     "share_on_google_plus": "Share on Google Plus"
   },
   "general": {
-    "akveo": "ALSA",
+    "alsa": "ALSA",
     "home": "Home",
     "forms": {
       "option1": "Option 1"
     },
     "menu": {
-      "dashboard": "Dashboard",            
-      "components": "Components",
+      "dashboard": "Dashboard",                  
       "tree_view": "Tree View",
       "charts": "Charts",
-      "chartist_js": "Chartist.Js",
+      "admin": "Admin",
+      "companies": "Empresa",
+      "materials": "Materiales",
+      "customers": "Clientes",
+      "sellers": "Vendedores",
+      "lines": "Líneas",
+      "quotation": "Cotizaciones",  
+
       "ui_features": "UI Features",
       "typography": "Typography",
       "buttons": "Buttons",
