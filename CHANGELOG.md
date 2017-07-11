@@ -35,7 +35,6 @@
 ### Features
 
 * **angular-cli:** integrate angular-cli :tada: ([#989](https://github.com/akveo/ng2-admin/issues/989)) ([7932421](https://github.com/akveo/ng2-admin/commit/7932421))
-* **dependencies:** update yarn.lock file, fix debugging ([cc97bf1](https://github.com/akveo/ng2-admin/commit/cc97bf1))
 * **layouts:** add file uploader ([#842](https://github.com/akveo/ng2-admin/issues/842)) ([7d03461](https://github.com/akveo/ng2-admin/commit/7d03461))
 * **localization:** implement the localization using ngx-translate ([#830](https://github.com/akveo/ng2-admin/issues/830)) ([627d62d](https://github.com/akveo/ng2-admin/commit/627d62d))
 * **login:** add the locale changes ([#993](https://github.com/akveo/ng2-admin/issues/993)) ([e033edf](https://github.com/akveo/ng2-admin/commit/e033edf))
