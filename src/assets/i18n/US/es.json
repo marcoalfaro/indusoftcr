@@ -58,8 +58,8 @@
     "created_with": "Created with"
   },
   "dashboard": {
-    "acquisition_channels": "Cotizaciones Recientes",
-    "users_by_country": "Users by Country",        
+    "recent_quotations": "Cotizaciones Recientes",
+    "quotations_by_line": "Cotizaciones Por Línea",      
     "new_visits": "New Visits",
     "purchases": "Purchases",
     "active_users": "Active Users",

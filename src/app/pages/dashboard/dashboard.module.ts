@@ -9,12 +9,10 @@ import { routing } from './dashboard.routing';
 
 import { PieChart } from './pieChart';
 import { TrafficChart } from './trafficChart';
-import { UsersMap } from './usersMap';
 import { LineChart } from './lineChart';
 import { LineChartService } from './lineChart/lineChart.service';
 import { PieChartService } from './pieChart/pieChart.service';
 import { TrafficChartService } from './trafficChart/trafficChart.service';
-import { UsersMapService } from './usersMap/usersMap.service';
 
 @NgModule({
   imports: [
@@ -27,16 +25,14 @@ import { UsersMapService } from './usersMap/usersMap.service';
   declarations: [
 
     PieChart,
-    TrafficChart,
-    UsersMap,
+    TrafficChart,    
     LineChart,        
     Dashboard
   ],
   providers: [        
     LineChartService,
     PieChartService,    
-    TrafficChartService,
-    UsersMapService
+    TrafficChartService,    
   ]
 })
 export class DashboardModule {}

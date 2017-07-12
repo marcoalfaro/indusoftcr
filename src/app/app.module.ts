@@ -16,6 +16,7 @@ import { AppState, InternalStateType } from './app.service';
 import { GlobalState } from './global.state';
 import { NgaModule } from './theme/nga.module';
 import { PagesModule } from './pages/pages.module';
+import { QuotationsComponent } from './quotations/quotations.component';
 
 
 // Application wide providers
@@ -37,6 +38,7 @@ export type StoreType = {
   bootstrap: [App],
   declarations: [
     App,
+    QuotationsComponent,
   ],
   imports: [ // import Angular's modules
     BrowserModule,
