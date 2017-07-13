@@ -1,4 +1,5 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component, ViewContainerRef, AfterViewInit, OnInit } from '@angular/core';
+import { Routes } from '@angular/router';
 import * as $ from 'jquery';
 
 import { GlobalState } from './global.state';
@@ -6,21 +7,19 @@ import { BaImageLoaderService, BaThemePreloader, BaThemeSpinner } from './theme/
 import { BaThemeConfig } from './theme/theme.config';
 import { layoutPaths } from './theme/theme.constants';
 
+import { BaMenuService } from './theme';
+import { APP_MENU } from './app.menu';
+
 /*
  * App Component
  * Top Level Component
  */
 @Component({
   selector: 'app',
-  styleUrls: ['./app.component.scss'],
-  template: `
-    <main [class.menu-collapsed]="isMenuCollapsed" baThemeRun>
-      <div class="additional-bg"></div>
-      <router-outlet></router-outlet>
-    </main>
-  `,
+  styleUrls: ['./app.component.scss'],  
+  templateUrl: './app.component.html'
 })
-export class App {
+export class AppComponent implements OnInit, AfterViewInit {
 
   isMenuCollapsed: boolean = false;
 
@@ -28,7 +27,8 @@ export class App {
               private _imageLoader: BaImageLoaderService,
               private _spinner: BaThemeSpinner,
               private viewContainerRef: ViewContainerRef,
-              private themeConfig: BaThemeConfig) {
+              private themeConfig: BaThemeConfig,
+              private _menuService: BaMenuService) {
 
     themeConfig.config();
 
@@ -37,6 +37,10 @@ export class App {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
+  }
+
+  ngOnInit() {
+    this._menuService.updateMenuByRoutes(<Routes>APP_MENU);
   }
 
   ngAfterViewInit(): void {

@@ -58,8 +58,8 @@
     "created_with": "Created with"
   },
   "dashboard": {
-    "recent_quotations": "Cotizaciones Recientes",
-    "quotations_by_line": "Cotizaciones Por Línea",      
+    "recent_quotes": "Cotizaciones Recientes",
+    "quotes_by_line": "Cotizaciones Por Línea",      
     "new_visits": "New Visits",
     "purchases": "Purchases",
     "active_users": "Active Users",

@@ -1,4 +1,5 @@
 import { NgModule, ApplicationRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -11,12 +12,14 @@ import { TranslateService } from '@ngx-translate/core';
 import { routing } from './app.routing';
 
 // App is our top level component
-import { App } from './app.component';
+import { AppComponent } from './app.component';
 import { AppState, InternalStateType } from './app.service';
 import { GlobalState } from './global.state';
 import { NgaModule } from './theme/nga.module';
-import { PagesModule } from './pages/pages.module';
-import { QuotationsComponent } from './quotations/quotations.component';
+
+import { AppTranslationModule } from './app.translation.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { QuotesComponent } from './quotes/quotes.component';
 
 
 // Application wide providers
@@ -35,10 +38,10 @@ export type StoreType = {
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
 @NgModule({
-  bootstrap: [App],
+  bootstrap: [AppComponent],
   declarations: [
-    App,
-    QuotationsComponent,
+    AppComponent,
+    QuotesComponent,
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -47,8 +50,10 @@ export type StoreType = {
     FormsModule,
     ReactiveFormsModule,
     NgaModule.forRoot(),
-    NgbModule.forRoot(),
-    PagesModule,
+    NgbModule.forRoot(),    
+    CommonModule,
+    AppTranslationModule,
+    DashboardModule,
     routing,
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
