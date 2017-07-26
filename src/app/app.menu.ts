@@ -1,6 +1,6 @@
 export const APP_MENU = [
   {
-    path: 'pages',
+    path: '',
     children: [
       {
         path: 'dashboard',
@@ -26,11 +26,11 @@ export const APP_MENU = [
           }
         },
         children: [
-          { path: 'chartist-js', data: { menu: { title: 'general.menu.companies' } } },
-          { path: 'chartist-js', data: { menu: { title: 'general.menu.materials' } } },
-          { path: 'chartist-js', data: { menu: { title: 'general.menu.customers' } } },
-          { path: 'chartist-js', data: { menu: { title: 'general.menu.sellers' } } },
-          { path: 'chartist-js', data: { menu: { title: 'general.menu.lines' } } } 
+          { path: 'companies', data: { menu: { title: 'general.menu.companies' } } },
+          { path: 'customers', data: { menu: { title: 'general.menu.customers' } } },
+          { path: 'lines', data: { menu: { title: 'general.menu.lines' } } },
+          { path: 'materials', data: { menu: { title: 'general.menu.materials' } } },
+          { path: 'sellers', data: { menu: { title: 'general.menu.sellers' } } } 
         ]
       },       
       {

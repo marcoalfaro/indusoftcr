@@ -1,5 +1,5 @@
 import { NgModule, ApplicationRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, APP_BASE_HREF } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -9,7 +9,9 @@ import { TranslateService } from '@ngx-translate/core';
 /*
  * Platform and Environment providers/directives/pipes
  */
-import { routing } from './app.routing';
+import { AppRoutingModule, routableComponents } from './app-routing.module';
+
+import './rxjs-extensions';
 
 // App is our top level component
 import { AppComponent } from './app.component';
@@ -19,8 +21,6 @@ import { NgaModule } from './theme/nga.module';
 
 import { AppTranslationModule } from './app.translation.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { QuotesComponent } from './quotes/quotes.component';
-
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -40,8 +40,8 @@ export type StoreType = {
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [
-    AppComponent,
-    QuotesComponent,
+    AppComponent,    
+    routableComponents
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -53,11 +53,14 @@ export type StoreType = {
     NgbModule.forRoot(),    
     CommonModule,
     AppTranslationModule,
+    
     DashboardModule,
-    routing,
+    
+    AppRoutingModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     APP_PROVIDERS,
+    { provide: APP_BASE_HREF, useValue : '/' }
   ],
 })
 

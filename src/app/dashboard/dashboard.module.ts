@@ -3,12 +3,10 @@ import { CommonModule } from '@angular/common';
 import { NgaModule } from '../theme/nga.module';
 import { AppTranslationModule } from '../app.translation.module';
 
-import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardComponent } from '../dashboard/dashboard.component';
+import { DashboardRoutingModule, routedComponents } from './dashboard-routing.module';
 
 import { PieChartComponent } from './pieChart';
 import { PieChartService } from './pieChart/pieChart.service';
-
 
 @NgModule({
   imports: [
@@ -19,7 +17,7 @@ import { PieChartService } from './pieChart/pieChart.service';
   ],
   declarations: [
     PieChartComponent,
-    DashboardComponent
+    routedComponents
   ],
    providers: [    
     PieChartService    
