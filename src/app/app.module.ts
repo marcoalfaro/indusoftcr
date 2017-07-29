@@ -6,12 +6,14 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+
 /*
  * Platform and Environment providers/directives/pipes
  */
 import { AppRoutingModule, routableComponents } from './app-routing.module';
 
 import './rxjs-extensions';
+import { AgGridModule } from 'ag-grid-angular/main';
 
 // App is our top level component
 import { AppComponent } from './app.component';
