@@ -28,6 +28,8 @@
         "../node_modules/chartist/dist/chartist.css",        
         "../node_modules/handsontable/dist/handsontable.full.css",
         "../node_modules/ng2-slim-loading-bar/style.css",
+        "../node_modules/ag-grid/dist/styles/ag-grid.css",
+        "../node_modules/ag-grid/dist/styles/theme-fresh.css",
         "app/theme/theme.scss",
         "styles.scss"
       ],
