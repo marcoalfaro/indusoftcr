@@ -60,6 +60,8 @@
     "@ng-bootstrap/ng-bootstrap": "1.0.0-alpha.26",
     "@ngx-translate/core": "6.0.1",
     "@ngx-translate/http-loader": "0.0.3",
+    "@types/jquery": "2.0.41",
+    "@types/jquery.slimscroll": "1.3.30",
     "ag-grid": "^12.0.2",
     "ag-grid-angular": "^12.0.0",
     "amcharts3": "github:amcharts/amcharts3",
@@ -93,9 +95,7 @@
     "zone.js": "0.8.11"
   },
   "devDependencies": {
-    "@types/jasmine": "2.5.38",
-    "@types/jquery": "2.0.41",
-    "@types/jquery.slimscroll": "1.3.30",
+    "@types/jasmine": "2.5.38",   
     "@types/lodash": "4.14.61",
     "@types/node": "6.0.69",
     "codelyzer": "3.0.1",
