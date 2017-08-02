@@ -1,9 +1,27 @@
-<p>
-  lines works!
-</p>
-<ag-grid-angular style="width: 500px; height: 115px;" class="ag-fresh"
-                 [rowData]="rowData"
-                 [columnDefs]="columnDefs"
-                 [gridOptions]="gridOptions"
-                 (gridReady)="onGridReady($event)" >                 
-</ag-grid-angular>
+<form>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="filtroTxt">Filtro</label>
+            <input type="text" id="filtroTxt" [value]="filterText" (valueChange)="filtroChanged($event)" />{{filterText}}
+            <ag-grid-angular style="width: 80%; height: 300px;" class="ag-fresh"
+                            [rowData]="filteredData"
+                            [columnDefs]="columnDefs"
+                            [gridOptions]="gridOptions"
+                            (gridReady)="onGridReady($event)" >                 
+            </ag-grid-angular>
+        </div>
+        <div class="col-md-6">
+            <h3>Detalle</h3>
+            <div class="form-group">
+                <label for="idTxt">ID</label>
+                <label id="idTxt">{{id}}</label>
+            </div> 
+            <div class="form-group">
+                <label for="nombreTxt">Nombre</label>
+                <input type="text" id="nombreTxt">
+            </div>        
+        </div>
+    </div>
+</form>
+
+

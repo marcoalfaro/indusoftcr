@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { GridOptions } from 'ag-grid/main';
 
 @Component({
@@ -6,34 +6,157 @@ import { GridOptions } from 'ag-grid/main';
   templateUrl: './lines.component.html',
   styleUrls: ['./lines.component.scss']
 })
-export class LinesComponent implements OnInit {
+export class LinesComponent implements OnInit, OnChanges {
+  filterText: string = '';
   gridOptions: GridOptions;
   columnDefs: any[];
-  rowData: any[];
-
+  filteredData: any[];
+  
   constructor() { 
-    this.gridOptions = <GridOptions>{};
-    this.columnDefs = [
-          { headerName: 'Make', field: 'make' },
-          { headerName: 'Price', field: 'price' }
-      ];
-
-      this.rowData = [
-          { make: 'Toyota', model: 'Celica', price: 35000 },
-          { make: 'Ford', model: 'Mondeo', price: 32000 },
-          { make: 'Subaru', model: 'Boxter', price: 72000 }
-      ];
+    this.configureGrid();   
   }  
 
   ngOnInit() {
     
   }
 
+  filtroChanged(event) {
+    console.log(this.filterText);  
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(this.filterText);
+  }
+
   onGridReady(params) {    
     params.api.sizeColumnsToFit();
   }
 
-  selectAllRows() {
-    this.gridOptions.api.selectAll();
+  configureGrid() {
+    this.gridOptions = <GridOptions>{};
+    this.columnDefs = [          
+          { headerName: '', field: 'nombre' }
+    ];
+
+    this.filteredData = this.getData();
+    
   }
+
+  getData() {
+      return [          
+        {
+            'id': 23,
+            'nombre': 'Ambientadores'
+        },
+        {
+            'id': 19,
+            'nombre': 'BANDERINES'
+        },
+        {
+            'id': 1,
+            'nombre': 'Calcomanías'
+        },
+        {
+            'id': 14,
+            'nombre': 'Calendario de Escritorio'
+        },
+        {
+            'id': 16,
+            'nombre': 'Calendarios de bolsillo.'
+        },
+        {
+            'id': 12,
+            'nombre': 'Cintillos'
+        },
+        {
+            'id': 29,
+            'nombre': 'Dangles'
+        },
+        {
+            'id': 8,
+            'nombre': 'Escuadra Isósceles'
+        },
+        {
+            'id': 28,
+            'nombre': 'Etiquetas'
+        },
+        {
+            'id': 4,
+            'nombre': 'EXHIBIDOR'
+        },
+        {
+            'id': 26,
+            'nombre': 'FICHAS'
+        },
+        {
+            'id': 9,
+            'nombre': 'Habladores'
+        },
+        {
+            'id': 25,
+            'nombre': 'IMPRESIONES'
+        },
+        {
+            'id': 18,
+            'nombre': 'Llaveros'
+        },
+        {
+            'id': 17,
+            'nombre': 'MAGNETICOS'
+        },
+        {
+            'id': 5,
+            'nombre': 'PLACAS'
+        },
+        {
+            'id': 22,
+            'nombre': 'Portabrochure'
+        },
+        {
+            'id': 24,
+            'nombre': 'PORTACUBOS'
+        },
+        {
+            'id': 20,
+            'nombre': 'PORTAMENUES'
+        },
+        {
+            'id': 3,
+            'nombre': 'PORTAPLATOS'
+        },
+        {
+            'id': 2,
+            'nombre': 'Posa vasos'
+        },
+        {
+            'id': 7,
+            'nombre': 'Reglas'
+        },
+        {
+            'id': 6,
+            'nombre': 'ROTULOS'
+        },
+        {
+            'id': 15,
+            'nombre': 'Separadores'
+        },
+        {
+            'id': 21,
+            'nombre': 'SERVILLETEROS'
+        },
+        {
+            'id': 13,
+            'nombre': 'Tarjetas'
+        },
+        {
+            'id': 10,
+            'nombre': 'Transportador'
+        },
+        {
+            'id': 27,
+            'nombre': 'Viceras'
+        }
+    ];
+  }
+
 }
