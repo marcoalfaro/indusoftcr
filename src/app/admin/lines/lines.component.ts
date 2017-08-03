@@ -11,9 +11,10 @@ export class LinesComponent implements OnInit {
   gridOptions: GridOptions;
   columnDefs: any[];
   filteredData: any[];
+  selectedItem = {};
   
   constructor() { 
-    this.configureGrid();   
+    this.configureGrid();
   }  
 
   ngOnInit() {
@@ -24,6 +25,12 @@ export class LinesComponent implements OnInit {
     const filter: string = event.target.value.toLowerCase();
     this.filteredData = this.getData().filter(item => item.nombre.toLowerCase().includes(filter));
   }  
+
+  selectRow(event) {      
+      if (event.node.selected) {
+            this.selectedItem = event.node.data;
+      }        
+  }
 
   onGridReady(params) {    
     params.api.sizeColumnsToFit();
