@@ -1,8 +1,9 @@
 <form>
     <div class="row">
         <div class="col-md-6">
-            <label for="filtroTxt">Filtro</label>
-            <input type="text" id="filtroTxt" [value]="filterText" (valueChange)="filtroChanged($event)" />{{filterText}}
+            <label for="filterTxt">Filtro</label>
+            <input type="text" id="filterTxt" [value]="filterText" (input)="filterChanged($event)" />{{filterText}}
+
             <ag-grid-angular style="width: 80%; height: 300px;" class="ag-fresh"
                             [rowData]="filteredData"
                             [columnDefs]="columnDefs"

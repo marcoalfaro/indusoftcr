@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { GridOptions } from 'ag-grid/main';
 
 @Component({
@@ -6,7 +6,7 @@ import { GridOptions } from 'ag-grid/main';
   templateUrl: './lines.component.html',
   styleUrls: ['./lines.component.scss']
 })
-export class LinesComponent implements OnInit, OnChanges {
+export class LinesComponent implements OnInit {
   filterText: string = '';
   gridOptions: GridOptions;
   columnDefs: any[];
@@ -20,13 +20,10 @@ export class LinesComponent implements OnInit, OnChanges {
     
   }
 
-  filtroChanged(event) {
-    console.log(this.filterText);  
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(this.filterText);
-  }
+  filterChanged(event) {
+    const filter: string = event.target.value.toLowerCase();
+    this.filteredData = this.getData().filter(item => item.nombre.toLowerCase().includes(filter));
+  }  
 
   onGridReady(params) {    
     params.api.sizeColumnsToFit();
