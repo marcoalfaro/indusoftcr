@@ -6,19 +6,14 @@ import { GridOptions } from 'ag-grid/main';
   templateUrl: './lines.component.html',
   styleUrls: ['./lines.component.scss']
 })
-export class LinesComponent implements OnInit {
-  filterText: string = '';
+export class LinesComponent implements OnInit {  
   gridOptions: GridOptions;
   columnDefs: any[];
   filteredData: any[];
   selectedItem = {};
   
-  constructor() { 
-    this.configureGrid();
-  }  
-
   ngOnInit() {
-    
+    this.configureGrid();
   }
 
   filterChanged(event) {
@@ -41,9 +36,7 @@ export class LinesComponent implements OnInit {
     this.columnDefs = [          
           { headerName: '', field: 'nombre' }
     ];
-
-    this.filteredData = this.getData();
-    
+    this.filteredData = this.getData();    
   }
 
   getData() {

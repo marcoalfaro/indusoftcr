@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-6">
             <label for="filterTxt">Filtro</label>
-            <input type="text" id="filterTxt" [value]="filterText" (input)="filterChanged($event)" />{{filterText}}
+            <input type="text" id="filterTxt" (input)="filterChanged($event)" />{{filterText}}
 
             <ag-grid-angular style="width: 80%; height: 300px;" class="ag-fresh"
                             rowSelection="single"
@@ -13,7 +13,7 @@
                             (gridReady)="onGridReady($event)" >
             </ag-grid-angular>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6">            
             <h3>Detalle</h3>
             <div class="form-group">
                 <label for="idTxt">ID</label>
