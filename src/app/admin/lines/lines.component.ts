@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GridOptions } from 'ag-grid/main';
+import { GenericItem } from '../../models/genericItem';
+
 
 @Component({
   selector: 'app-lines',
@@ -10,7 +12,7 @@ export class LinesComponent implements OnInit {
   gridOptions: GridOptions;
   columnDefs: any[];
   filteredData: any[];
-  selectedItem = {};
+  selectedItem: GenericItem = new GenericItem();
   
   ngOnInit() {
     this.configureGrid();
