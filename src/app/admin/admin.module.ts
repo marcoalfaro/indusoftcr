@@ -5,6 +5,7 @@ import { AdminRoutingModule, routedComponents } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 
 import { AgGridModule } from 'ag-grid-angular/main';
+import { CompanyConfigComponent } from './company-config/company-config.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { AgGridModule } from 'ag-grid-angular/main';
   ],
   declarations: [
     AdminComponent,
-    routedComponents
+    routedComponents,
+    CompanyConfigComponent
   ]
 })
 

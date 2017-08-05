@@ -27,6 +27,8 @@ export const APP_MENU = [
         },
         children: [
           { path: 'companies', data: { menu: { title: 'general.menu.companies' } } },
+          { path: 'configuration', data: { menu: { title: 'general.menu.configuration' } } },
+          { path: 'prices', data: { menu: { title: 'general.menu.prices' } } },
           { path: 'customers', data: { menu: { title: 'general.menu.customers' } } },
           { path: 'lines', data: { menu: { title: 'general.menu.lines' } } },
           { path: 'materials', data: { menu: { title: 'general.menu.materials' } } },

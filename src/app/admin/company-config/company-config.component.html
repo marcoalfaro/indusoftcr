@@ -1,0 +1,78 @@
+<form>
+    <div class="row">        
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="cedulaTxt">Cédula</label>
+                <input type="text" id="cedulaTxt" [(value)]="selectedItem.cedula"/>
+            </div>
+            <div class="form-group">
+                <label for="telefonoTxt">Teléfono</label>
+                <input type="text" id="telefonoTxt" [(value)]="selectedItem.telefono"/>
+            </div>
+              <div class="form-group">
+                <label for="emailTxt">EMail</label>
+                <input type="text" id="emailTxt" [(value)]="selectedItem.email"/>
+            </div>
+              <div class="form-group">
+                <label for="utilidadTxt">Utilidad</label>
+                <input type="text" id="utilidadTxt" [(value)]="selectedItem.utilidad"/>
+            </div>
+              <div class="form-group">
+                <label for="impuestoVentaTxt">Impuesto de Venta</label>
+                <input type="text" id="impuestoVentaTxt" [(value)]="selectedItem.impuestoventa"/>
+            </div>              
+            <div class="form-group">
+                <label for="activoTxt">Activo</label>
+                <input type="checkbox" id="activoTxt" [(checked)]="selectedItem.activo"/>
+            </div> 
+        </div>
+        <div class="col-md-6">   
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title">Costos</h4>
+                    <div class="form-group">
+                        <label for="precioMoldeTxt">Molde</label>
+                        <input type="text" id="precioMoldeTxt" [(value)]="selectedItem.precioMolde"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="precioTintaTxt">Tinta</label>
+                        <input type="text" id="precioTintaTxt" [(value)]="selectedItem.precioTinta"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="precioPositivoTxt">Positivo</label>
+                        <input type="text" id="precioPositivoTxt" [(value)]="selectedItem.precioPositivo"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="precioArteTxt">Arte</label>
+                        <input type="text" id="precioArteTxt" [(value)]="selectedItem.precioArte"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="precioSolventeTxt">Solvente</label>
+                        <input type="text" id="precioSolventeTxt" [(value)]="selectedItem.precioSolvente"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="precioCorteTxt">Corte</label>
+                        <input type="text" id="precioCorteTxt" [(value)]="selectedItem.precioCorte"/>
+                    </div>  
+                    <div class="form-group">
+                        <label for="precioVelocidadTxt">Velocidad</label>
+                        <input type="text" id="precioVelocidadTxt" [(value)]="selectedItem.precioVelocidad"/>
+                    </div>  
+                    <div class="form-group">
+                        <label for="precioHoraImpresionTxt">Hora de Impresión</label>
+                        <input type="text" id="precioHoraImpresionTxt" [(value)]="selectedItem.precioHoraImpresion"/>
+                    </div>  
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <button class="btn btn-primary"><i class="fa fa-ban" aria-hidden="true"></i></button>
+                <button class="btn btn-primary"><i class="fa fa-file-o" aria-hidden="true"></i></button>
+                <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                <button class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+            </div>      
+        </div>
+    </div>
+</form>
+
+

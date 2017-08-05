@@ -156,5 +156,4 @@ export class LinesComponent implements OnInit {
         }
     ];
   }
-
 }
