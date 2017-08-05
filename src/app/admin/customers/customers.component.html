@@ -1,3 +1,63 @@
-<p>
-  customers works!
-</p>
+<form>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="filterTxt">Filtro</label>
+            <input type="text" id="filterTxt" (input)="filterChanged($event)" />
+
+            <ag-grid-angular style="width: 80%; height: 300px;" class="ag-fresh"
+                            rowSelection="single"
+                            [rowData]="filteredData"
+                            [columnDefs]="columnDefs"
+                            [gridOptions]="gridOptions"                                                        
+                            (rowSelected)="selectRow($event)"                            
+                            (gridReady)="onGridReady($event)" >
+            </ag-grid-angular>
+        </div>
+        <div class="col-md-6">            
+            <h3>Detalle</h3>
+            <div class="form-group">
+                <label for="idTxt">ID</label>
+                <label id="idTxt">{{selectedItem.id}}</label>
+            </div> 
+            <div class="form-group">
+                <label for="nombreTxt">Nombre</label>
+                <input type="text" id="nombreTxt" [(value)]="selectedItem.nombre"/>
+            </div>
+            <div class="form-group">
+                <label for="cedulaTxt">Cédula</label>
+                <input type="text" id="cedulaTxt" [(value)]="selectedItem.cedula"/>
+            </div>
+            <div class="form-group">
+                <label for="telefonoTxt">Teléfono</label>
+                <input type="text" id="telefonoTxt" [(value)]="selectedItem.telefono"/>
+            </div>
+            <div class="form-group">
+                <label for="activoTxt">Activo</label>
+                <input type="checkbox" id="activoTxt" [(checked)]="selectedItem.activo"/>
+            </div>            
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title">Contacto</h4>
+                    <div class="form-group">
+                        <label for="contactoNombreTxt">Nombre</label>
+                        <input type="text" id="contactoNombreTxt" [(value)]="selectedItem.contactoNombre"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactoTelefonoTxt">Teléfono</label>
+                        <input type="text" id="contactoTelefonoTxt" [(value)]="selectedItem.contactoTelefono"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactoEmailTxt">Email</label>
+                        <input type="text" id="contactoEmailTxt" [(value)]="selectedItem.contactoEmail"/>
+                    </div>
+                </div>
+            </div>            
+            <div class="form-group">
+                <button class="btn btn-primary"><i class="fa fa-ban" aria-hidden="true"></i></button>
+                <button class="btn btn-primary"><i class="fa fa-file-o" aria-hidden="true"></i></button>
+                <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                <button class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+            </div>      
+        </div>
+    </div>
+</form>
