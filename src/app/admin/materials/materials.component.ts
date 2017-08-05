@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GridOptions } from 'ag-grid/main';
-import { GenericItem } from '../../models/genericItem';
+import { Material } from '../../models/Material';
 
 @Component({
   selector: 'app-materials',
@@ -11,7 +11,7 @@ export class MaterialsComponent implements OnInit {
   gridOptions: GridOptions;
   columnDefs: any[];
   filteredData: any[];
-  selectedItem: GenericItem = new GenericItem();
+  selectedItem: Material = new Material();
   
   ngOnInit() {
     this.configureGrid();

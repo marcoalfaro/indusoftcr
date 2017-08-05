@@ -24,6 +24,31 @@
                 <input type="text" id="nombreTxt" [(value)]="selectedItem.nombre"/>
             </div>
             <div class="form-group">
+                <label for="baseTxt">Base</label>
+                <input type="text" id="baseTxt" [(value)]="selectedItem.base"/>
+            </div>
+            <div class="form-group">
+                <label for="alturaTxt">Altura</label>
+                <input type="text" id="alturaTxt" [(value)]="selectedItem.altura"/>
+            </div>
+            <div class="form-group">
+                <label for="activoTxt">Activo</label>
+                <input type="checkbox" id="activoTxt" [(checked)]="selectedItem.activo"/>
+            </div>            
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title">Inventario</h4>
+                    <div class="form-group">
+                        <label for="codigoInventarioTxt">Código</label>
+                        <input type="text" id="codigoInventarioTxt" [(value)]="selectedItem.codigoInventario"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="costoInventarioTxt">Costo</label>
+                        <input type="text" id="costoInventarioTxt" [(value)]="selectedItem.costoInventario"/>
+                    </div>
+                </div>
+            </div>            
+            <div class="form-group">
                 <button class="btn btn-primary"><i class="fa fa-ban" aria-hidden="true"></i></button>
                 <button class="btn btn-primary"><i class="fa fa-file-o" aria-hidden="true"></i></button>
                 <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>

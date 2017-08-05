@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { GridOptions } from 'ag-grid/main';
 import { GenericItem } from '../../models/genericItem';
 
-
 @Component({
   selector: 'app-lines',
   templateUrl: './lines.component.html',
