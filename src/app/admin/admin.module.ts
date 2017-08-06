@@ -16,7 +16,7 @@ import { CompanyConfigComponent } from './company-config/company-config.componen
   declarations: [
     AdminComponent,
     routedComponents,
-    CompanyConfigComponent
+    CompanyConfigComponent    
   ]
 })
 

@@ -56,38 +56,3 @@ export class CompaniesComponent implements OnInit {
     ];
   }
 }
-
-
-/*
---- Precios
-[
-    {
-        "molde": 900,
-        "tinta": 0.02,
-        "positivo": 2.33,
-        "arte": 1000,
-        "solvente": 900,
-        "corte": 1000,
-        "velocidad": 250,
-        "horaImpresion": 2140,
-        "empresaId": 1,
-        "id": 1,
-        "activo": true
-    },
-    {
-        "molde": 0,
-        "tinta": 0,
-        "positivo": 0,
-        "arte": 0,
-        "solvente": 0,
-        "corte": 0,
-        "velocidad": 0,
-        "horaImpresion": 0,
-        "empresaId": 1,
-        "id": 2,
-        "activo": true
-    }
-]
-
-
-*/
