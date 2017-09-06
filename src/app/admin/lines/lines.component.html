@@ -4,33 +4,26 @@
             <label for="filterTxt">Filtro</label>
             <input type="text" id="filterTxt" (input)="filterChanged($event)" />
 
-            <ag-grid-angular style="width: 80%; height: 300px;" class="ag-fresh"
-                            rowSelection="single"
-                            [rowData]="filteredData"
-                            [columnDefs]="columnDefs"
-                            [gridOptions]="gridOptions"                                                        
-                            (rowSelected)="selectRow($event)"                            
-                            (gridReady)="onGridReady($event)" >
-            </ag-grid-angular>
+            <jqxGrid [source]="dataAdapter" [columns]="columns" [pageable]="true" [autoheight]="true" [sortable]="true"
+                [altrows]="true" [enabletooltips]="true" [editable]="true" [selectionmode]="'multiplecellsadvanced'" [columngroups]="columngroups">
+            </jqxGrid>
         </div>
-        <div class="col-md-6">            
+        <div class="col-md-6">
             <h3>Detalle</h3>
             <div class="form-group">
                 <label for="idTxt">ID</label>
                 <label id="idTxt">{{selectedItem.id}}</label>
-            </div> 
+            </div>
             <div class="form-group">
                 <label for="nombreTxt">Nombre</label>
-                <input type="text" id="nombreTxt" [(value)]="selectedItem.nombre"/>
+                <input type="text" id="nombreTxt" [(value)]="selectedItem.nombre" />
             </div>
             <div class="form-group">
                 <button class="btn btn-primary"><i class="fa fa-ban" aria-hidden="true"></i></button>
                 <button class="btn btn-primary"><i class="fa fa-file-o" aria-hidden="true"></i></button>
                 <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
                 <button class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-            </div>      
+            </div>
         </div>
     </div>
 </form>
-
-

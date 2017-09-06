@@ -6,6 +6,7 @@ import { AdminComponent } from './admin.component';
 
 import { AgGridModule } from 'ag-grid-angular/main';
 import { CompanyConfigComponent } from './company-config/company-config.component';
+import { jqxGridComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxgrid';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { CompanyConfigComponent } from './company-config/company-config.componen
   declarations: [
     AdminComponent,
     routedComponents,
-    CompanyConfigComponent    
+    CompanyConfigComponent, 
+    jqxGridComponent  
   ]
 })
 

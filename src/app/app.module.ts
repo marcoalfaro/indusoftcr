@@ -23,7 +23,6 @@ import { NgaModule } from './theme/nga.module';
 
 import { AppTranslationModule } from './app.translation.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-
 // Application wide providers
 const APP_PROVIDERS = [
   AppState,
