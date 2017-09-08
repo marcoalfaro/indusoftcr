@@ -20,8 +20,8 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
-                    <jqxGrid [source]="dataAdapter" [columns]="columns" [pageable]="true" [autoheight]="true" [sortable]="true" [altrows]="true"
-                        [enabletooltips]="true" [editable]="true" [selectionmode]="'multiplecellsadvanced'" [columngroups]="columngroups"
+                    <jqxGrid [source]="dataAdapter" [columns]="columns"  [sortable]="true" [altrows]="true"
+                        [enabletooltips]="true"  [scrollmode]="'deferred'" [columngroups]="columngroups"
                         [filterable]="true">
                     </jqxGrid>
                 </div>

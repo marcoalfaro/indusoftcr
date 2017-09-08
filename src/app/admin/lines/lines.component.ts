@@ -31,7 +31,7 @@ export class LinesComponent implements OnInit {
     };
     this.dataAdapter = new jqx.dataAdapter(this.source);
     this.columns = [
-        { text: 'ID', columngroup: 'id', datafield: 'id' },
+        { text: 'ID', columngroup: 'id', datafield: 'id', width: '10%' },
         { text: 'Nombre', columngroup: 'nombre', datafield: 'nombre' }
     ];
   }
