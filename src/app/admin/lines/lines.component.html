@@ -1,42 +1,39 @@
-<form>
-    <div class="card">
-        <div class="card-header">
-            <div class="row">
-                <div class="col-md-6">
-                    <h4 class="card-title">
-                        Listado de lineas
-                    </h4>
-                </div>
-                <div class="col-md-6">
-                    <p style="text-align: right">
-                        <button class="btn btn-primary"><i class="fa fa-ban" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary"><i class="fa fa-file-o" aria-hidden="true"></i></button>
-                        <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-                    </p>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4 class="card-title">
+                            Listado de lineas
+                        </h4>
+                    </div>
+                    <div class="col-md-6">
+                        <p style="text-align: right">
+                            <button class="btn btn-primary"><i class="fa fa-ban" aria-hidden="true"></i></button>
+                            <button class="btn btn-primary"><i class="fa fa-file-o" aria-hidden="true"></i></button>
+                            <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <button class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-6">
-                    <jqxGrid [source]="dataAdapter" [columns]="columns"  [sortable]="true" [altrows]="true"
-                        [enabletooltips]="true"  [scrollmode]="'deferred'" [columngroups]="columngroups"
-                        [filterable]="true">
-                    </jqxGrid>
-                </div>
-                <div class="col-md-6">
-                    <h4 class="card-title">
-                        Detalle
-                    </h4>
-                    <div class="input-group">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <jqxGrid [source]="dataAdapter" [columns]="columns" [sortable]="true" [altrows]="true" [enabletooltips]="true" [scrollmode]="'deferred'"
+                            [columngroups]="columngroups" [filterable]="true">
+                        </jqxGrid>
+                    </div>
+                    <div class="col">
+                        <h4 class="card-title">
+                            Detalle
+                        </h4>
                         <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre">
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="card-footer">
-            <div class="row">
+            <div class="card-footer">
                 <div class="col-md-12">
                     <p style="text-align: right">
                         <button class="btn btn-primary"><i class="fa fa-ban" aria-hidden="true"></i></button>
@@ -48,4 +45,4 @@
             </div>
         </div>
     </div>
-</form>
+</div>
