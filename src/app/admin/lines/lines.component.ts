@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GridOptions } from 'ag-grid/main';
 import { GenericItem } from '../../models/genericItem';
+import { jqxGridComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxgrid';
 
 @Component({
   selector: 'app-lines',
@@ -12,6 +13,28 @@ export class LinesComponent implements OnInit {
   columnDefs: any[];
   filteredData: any[];
   selectedItem: GenericItem = new GenericItem();
+  source: any = {};
+  
+  dataAdapter: any;
+  columns: any[];
+
+  constructor () {
+    this.source = {
+        localdata: this.getData(),
+        // url: '../sampledata/products.xml' //Mae marquito aqui colocas la URL del api cuando uses services
+        datatype: 'json',
+        datafields: [
+            { name: 'id', type: 'int' },
+            { name: 'nombre', type: 'string' }
+        ],
+        id: 'id', 
+    };
+    this.dataAdapter = new jqx.dataAdapter(this.source);
+    this.columns = [
+        { text: 'ID', columngroup: 'id', datafield: 'id', width: '10%' },
+        { text: 'Nombre', columngroup: 'nombre', datafield: 'nombre' }
+    ];
+  }
   
   ngOnInit() {
     this.configureGrid();
