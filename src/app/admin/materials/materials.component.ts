@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GridOptions } from 'ag-grid/main';
-import { Material } from 'app/models/Material';
+import { Material } from '../../models/material';
 
 @Component({
   selector: 'app-materials',

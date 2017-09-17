@@ -1,10 +1,10 @@
 import { Component, ViewChild, AfterViewInit, OnInit, Input, ViewContainerRef } from '@angular/core';
-import { GenericItem } from 'app/models/genericItem';
+import { GenericItem } from '../../models/genericItem';
 import { jqxGridComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxgrid';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { ConfirmComponent } from 'app/common/confirm.component';
+import { ConfirmComponent } from '../../common/confirm.component';
 import { DialogService } from "ng2-bootstrap-modal";
-import { GridOptions } from 'app/common/gridOptions';
+import { GridOptions } from '../../common/GridOptions';
 import { NgModel } from '@angular/forms';
 
 @Component({
