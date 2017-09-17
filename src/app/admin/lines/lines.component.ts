@@ -1,10 +1,10 @@
 import { Component, ViewChild, AfterViewInit, OnInit, Input, ViewContainerRef } from '@angular/core';
-import { GenericItem } from '../../models/genericItem';
+import { GenericItem } from 'app/models/genericItem';
 import { jqxGridComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxgrid';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { ConfirmComponent } from '../../common/confirm.component';
+import { ConfirmComponent } from 'app/common/confirm.component';
 import { DialogService } from "ng2-bootstrap-modal";
-import { GridOptions } from '../../common/gridOptions';
+import { GridOptions } from 'app/common/gridOptions';
 import { NgModel } from '@angular/forms';
 
 @Component({
@@ -16,7 +16,8 @@ export class LinesComponent implements OnInit {
   @ViewChild('grid') myGrid: jqxGridComponent; 
   gridOptions: GridOptions = new GridOptions();    
   selectedItem: GenericItem = new GenericItem(); 
-  dialogService: DialogService
+  dialogService: DialogService;
+  data: any[];
   
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, dialogService: DialogService) {
     this.toastr.setRootViewContainerRef(vcr);    
@@ -24,12 +25,13 @@ export class LinesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.data = this.getData();
     this.configureGrid();
   }
 
   configureGrid(){    
     this.gridOptions.source = {
-        localdata: this.getData(),  
+        localdata: this.data,  
         // url: '../sampledata/products.xml' //Mae marquito aqui colocas la URL del api cuando uses services
         datatype: 'json',
         datafields: [
@@ -69,8 +71,17 @@ export class LinesComponent implements OnInit {
         });   
   }
 
-  save(){     
-    this.toastr.success(`La línea "${this.selectedItem.nombre}" fue guardada`, 'Guardar');
+  save(){
+    const name = this.selectedItem.nombre;
+    if (this.isNameRepeated())
+      this.toastr.error(`La línea "${name}" está repetida`, 'Línea repetida');  
+    else    
+      this.toastr.success(`La línea "${name}" fue guardada`, 'Guardar');
+  }
+
+  isNameRepeated(){     
+    const item = this.selectedItem;
+    return this.data.find(x => x.id !== item.id && x.nombre.trim().toLowerCase() === item.nombre.trim().toLowerCase());
   }
 
   clearSelection(){

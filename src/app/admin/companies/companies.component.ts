@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GridOptions } from 'ag-grid/main';
-import { Company } from '../../models/company';
+import { Company } from 'app/models/company';
 
 @Component({
   selector: 'app-companies',
