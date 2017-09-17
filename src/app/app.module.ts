@@ -1,6 +1,7 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { CommonModule, APP_BASE_HREF } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
@@ -23,6 +24,10 @@ import { NgaModule } from './theme/nga.module';
 
 import { AppTranslationModule } from './app.translation.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { ConfirmComponent } from './common/confirm.component';
+
 // Application wide providers
 const APP_PROVIDERS = [
   AppState,
@@ -39,13 +44,18 @@ export type StoreType = {
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
 @NgModule({
+  entryComponents: [
+    ConfirmComponent
+  ],
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,    
-    routableComponents
+    routableComponents,
+    ConfirmComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
+    BrowserAnimationsModule,
     HttpModule,
     RouterModule,
     FormsModule,
@@ -53,11 +63,11 @@ export type StoreType = {
     NgaModule.forRoot(),
     NgbModule.forRoot(),    
     CommonModule,
-    AppTranslationModule,
-    
-    DashboardModule,
-    
-    AppRoutingModule
+    AppTranslationModule,    
+    DashboardModule,    
+    AppRoutingModule,
+    ToastModule.forRoot(),
+    BootstrapModalModule.forRoot({container:document.body})
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     APP_PROVIDERS,

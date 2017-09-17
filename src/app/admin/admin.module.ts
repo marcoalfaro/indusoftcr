@@ -8,8 +8,11 @@ import { AgGridModule } from 'ag-grid-angular/main';
 import { CompanyConfigComponent } from './company-config/company-config.component';
 import { jqxGridComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxgrid';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   imports: [
+    FormsModule,
     CommonModule,
     AdminRoutingModule,    
     AgGridModule.withComponents([]),

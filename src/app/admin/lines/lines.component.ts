@@ -1,7 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { GridOptions } from 'ag-grid/main';
+import { Component, ViewChild, AfterViewInit, OnInit, Input, ViewContainerRef } from '@angular/core';
 import { GenericItem } from '../../models/genericItem';
 import { jqxGridComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxgrid';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ConfirmComponent } from '../../common/confirm.component';
+import { DialogService } from "ng2-bootstrap-modal";
+import { GridOptions } from '../../common/gridOptions';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-lines',
@@ -9,18 +13,23 @@ import { jqxGridComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxgr
   styleUrls: ['./lines.component.scss']
 })
 export class LinesComponent implements OnInit {  
-  gridOptions: GridOptions;
-  columnDefs: any[];
-  filteredData: any[];
-  selectedItem: GenericItem = new GenericItem();
-  source: any = {};
+  @ViewChild('grid') myGrid: jqxGridComponent; 
+  gridOptions: GridOptions = new GridOptions();    
+  selectedItem: GenericItem = new GenericItem(); 
+  dialogService: DialogService
   
-  dataAdapter: any;
-  columns: any[];
+  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, dialogService: DialogService) {
+    this.toastr.setRootViewContainerRef(vcr);    
+    this.dialogService = dialogService;
+  }
 
-  constructor () {
-    this.source = {
-        localdata: this.getData(),
+  ngOnInit() {
+    this.configureGrid();
+  }
+
+  configureGrid(){    
+    this.gridOptions.source = {
+        localdata: this.getData(),  
         // url: '../sampledata/products.xml' //Mae marquito aqui colocas la URL del api cuando uses services
         datatype: 'json',
         datafields: [
@@ -29,38 +38,48 @@ export class LinesComponent implements OnInit {
         ],
         id: 'id', 
     };
-    this.dataAdapter = new jqx.dataAdapter(this.source);
-    this.columns = [
+    this.gridOptions.dataAdapter = new jqx.dataAdapter(this.gridOptions.source);
+    this.gridOptions.columns = [
         { text: 'ID', columngroup: 'id', datafield: 'id', width: '10%' },
         { text: 'Nombre', columngroup: 'nombre', datafield: 'nombre' }
     ];
   }
-  
-  ngOnInit() {
-    this.configureGrid();
-  }
 
-  filterChanged(event) {
-    const filter: string = event.target.value.toLowerCase();
-    this.filteredData = this.getData().filter(item => item.nombre.toLowerCase().includes(filter));
+  rowSelected(event): void 
+  {    
+    this.selectedItem = event.args.row;   
+  }   
+
+  cancel(){ 
+    if (this.isItemPopulated()){
+        this.clearSelection();  
+        this.toastr.info('Nueva Línea!');
+    }    
   }  
 
-  selectRow(event) {      
-      if (event.node.selected) {
-            this.selectedItem = event.node.data;
-      }        
+  delete(){
+    this.dialogService.addDialog(ConfirmComponent, {
+        title:'Confirmación', 
+        message:`¿Está seguro(a) de borrar la línea "${this.selectedItem.nombre}"?`})
+        .subscribe((isConfirmed)=>{            
+            if(isConfirmed) {
+                this.clearSelection();                
+                this.toastr.success('Línea borrada exitosamente', 'Borrado');
+            }
+        });   
   }
 
-  onGridReady(params) {    
-    params.api.sizeColumnsToFit();
+  save(){     
+    this.toastr.success(`La línea "${this.selectedItem.nombre}" fue guardada`, 'Guardar');
   }
 
-  configureGrid() {
-    this.gridOptions = <GridOptions>{};
-    this.columnDefs = [          
-          { headerName: '', field: 'nombre' }
-    ];
-    this.filteredData = this.getData();    
+  clearSelection(){
+    this.myGrid.clearselection();
+    this.selectedItem = new GenericItem();
+  }
+
+  isItemPopulated(){
+      return this.selectedItem && this.selectedItem.nombre.trim().length > 0;
   }
 
   getData() {
