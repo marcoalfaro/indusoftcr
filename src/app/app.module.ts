@@ -67,7 +67,7 @@ export type StoreType = {
     DashboardModule,    
     AppRoutingModule,
     ToastModule.forRoot(),
-    BootstrapModalModule.forRoot({container:document.body})
+    BootstrapModalModule.forRoot({ container: document.body })
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     APP_PROVIDERS,
