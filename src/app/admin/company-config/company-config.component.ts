@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Configuration } from '../../models/configuration';
+import { Configuration } from 'app/models/configuration';
 
 @Component({
   selector: 'app-company-config',

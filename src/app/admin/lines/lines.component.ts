@@ -12,6 +12,7 @@ import { NgModel } from '@angular/forms';
     templateUrl: './lines.component.html',
     styleUrls: ['./lines.component.scss']
 })
+
 export class LinesComponent implements OnInit {
 
     @ViewChild('linesGrid') linesGrid: GridComponent;
@@ -56,6 +57,19 @@ export class LinesComponent implements OnInit {
         }
     }
 
+  save(){
+    const name = this.selectedItem.nombre;
+    if (this.isNameRepeated())
+      this.toastr.error(`La línea "${name}" está repetida`, 'Línea repetida');  
+    else    
+      this.toastr.success(`La línea "${name}" fue guardada`, 'Guardar');
+  }
+
+  isNameRepeated(){     
+    const item = this.selectedItem;
+    return this.data.find(x => x.id !== item.id && x.nombre.trim().toLowerCase() === item.nombre.trim().toLowerCase());
+  }
+
     delete() {
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmación',
@@ -68,11 +82,7 @@ export class LinesComponent implements OnInit {
                 }
             });
     }
-
-    save() {
-        this.toastr.success(`La línea "${this.selectedItem.nombre}" fue guardada`, 'Guardar');
-    }
-
+   
     clearSelection() {
         this.linesGrid.grid.clearselection();
         this.selectedItem = new GenericItem();
