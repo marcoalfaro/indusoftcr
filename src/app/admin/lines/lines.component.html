@@ -10,25 +10,25 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body">                
+            <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <jqxGrid #grid [source]="gridOptions.dataAdapter" [columns]="gridOptions.columns" [sortable]="true" [altrows]="true" 
-                                 [enabletooltips]="true" [scrollmode]="'deferred'" [filterable]="true"
-                                 (onRowselect)="rowSelected($event)">
-                        </jqxGrid>
+                        <app-grid #linesGrid (onRowSelected)="rowSelected($event)"></app-grid>
+                        <!-- <jqxGrid #grid [source]="gridOptions.dataAdapter" [columns]="gridOptions.columns" [sortable]="true" [altrows]="true" [enabletooltips]="true"
+                            [scrollmode]="'deferred'" [filterable]="true" (onRowselect)="rowSelected($event)">
+                        </jqxGrid> -->
                     </div>
                     <div class="col">
                         <h4 class="card-title">
                             Detalle
                         </h4>
                         <input class="form-control" placeholder="Nombre" aria-label="Nombre" [(ngModel)]="selectedItem.nombre" maxlength="50">                         
-                    </div>                    
+                    </div>
                 </div>
             </div>
             <div class="card-footer">
                 <div class="col-md-12">
-                    <p style="text-align: right">                        
+                    <p style="text-align: right">
                         <button class="btn btn-primary" [disabled]="!isItemPopulated()" title="Nuevo" (click)="cancel()"><i class="fa fa-file-o" aria-hidden="true"></i></button>
                         <button class="btn btn-danger" [disabled]="!isItemPopulated()" title="Borrar" (click)="delete()"><i class="fa fa-trash" aria-hidden="true"></i></button>
                         <button class="btn btn-primary" [disabled]="!isItemPopulated()" title="Guardar" (click)="save()"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
