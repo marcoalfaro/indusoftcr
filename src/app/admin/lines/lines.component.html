@@ -13,10 +13,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <app-grid #linesGrid (onRowSelected)="rowSelected($event)"></app-grid>
-                        <!-- <jqxGrid #grid [source]="gridOptions.dataAdapter" [columns]="gridOptions.columns" [sortable]="true" [altrows]="true" [enabletooltips]="true"
-                            [scrollmode]="'deferred'" [filterable]="true" (onRowselect)="rowSelected($event)">
-                        </jqxGrid> -->
+                        <app-grid #linesGrid (onRowSelected)="rowSelected($event)"></app-grid>                        
                     </div>
                     <div class="col">
                         <h4 class="card-title">
