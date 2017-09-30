@@ -6,7 +6,7 @@ export class Customer {
     telefono: string;
     contactoNombre: string;
     contactoTelefono: string;    
-    contactoEmail: string;    
+    contactoCorreo: string;    
     
     constructor() {
         this.id = 0;
@@ -16,6 +16,6 @@ export class Customer {
         this.telefono = '';
         this.contactoNombre = '';
         this.contactoTelefono = '';
-        this.contactoEmail = '';
+        this.contactoCorreo = '';
     }
 }
