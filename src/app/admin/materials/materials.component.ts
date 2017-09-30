@@ -4,7 +4,6 @@ import { GridComponent } from '../../common/grid/grid.component';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ConfirmComponent } from '../../common/confirm.component';
 import { DialogService } from 'ng2-bootstrap-modal';
-import { GridOptions } from '../../common/gridOptions';
 import { NgModel } from '@angular/forms';
 import { Material } from '../../Models/Material';
 

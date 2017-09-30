@@ -1,5 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { GridOptions } from 'ag-grid/main';
+import { Component, ViewChild, AfterViewInit, OnInit, Input, ViewContainerRef } from '@angular/core';
+import { GenericItem } from '../../models/genericItem';
+import { GridComponent } from '../../common/grid/grid.component';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ConfirmComponent } from '../../common/confirm.component';
+import { DialogService } from 'ng2-bootstrap-modal';
+import { NgModel } from '@angular/forms';
 import { Seller } from 'app/models/seller';
 
 @Component({
@@ -8,37 +13,88 @@ import { Seller } from 'app/models/seller';
   styleUrls: ['./sellers.component.scss']
 })
 export class SellersComponent implements OnInit {  
-  gridOptions: GridOptions;
-  columnDefs: any[];
-  filteredData: any[];
-  selectedItem: Seller = new Seller();
-  
+  @ViewChild('grid') grid: GridComponent;
+  selectedItem: GenericItem = new GenericItem();
+  dialogService: DialogService;
+  data: any[];
+  readonly entityName = 'Vendedor';  
+
+  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, dialogService: DialogService) {
+      this.toastr.setRootViewContainerRef(vcr);
+      this.dialogService = dialogService;
+  }
+
   ngOnInit() {
+    this.data = this.getData();  
     this.configureGrid();
+  } 
+
+  rowSelected(event): void {
+      this.selectedItem = event.args.row;
   }
 
-  filterChanged(event) {
-    const filter: string = event.target.value.toLowerCase();
-    this.filteredData = this.getData().filter(item => item.nombre.toLowerCase().includes(filter));
-  }  
-
-  selectRow(event) {      
-      if (event.node.selected) {
-            this.selectedItem = event.node.data;
-      }        
+  cancel() {
+    if (this.isItemPopulated()) {
+        this.clearSelection();
+        this.toastr.info(`Nuevo ${this.entityName}!`);
+    }
   }
 
-  onGridReady(params) {    
-    params.api.sizeColumnsToFit();
+  save(){
+    const name = this.selectedItem.nombre;
+    if (this.isNameRepeated())
+      this.toastr.error(`El ${this.entityName} "${name}" está repetido`, 'Item repetido');
+    else    
+      this.toastr.success(`El ${this.entityName} "${name}" fue guardado`, 'Guardar');
+  }    
+
+  delete() {
+      this.dialogService.addDialog(ConfirmComponent, {
+          title: 'Confirmación',
+          message: `¿Está seguro(a) de borrar el ${this.entityName.toLowerCase()} "${this.selectedItem.nombre}"?`
+      })
+          .subscribe((isConfirmed) => {
+              if (isConfirmed) {
+                  this.clearSelection();
+                  this.toastr.success(`${this.entityName} borrado exitosamente`, 'Borrado');
+              }
+          });
+  } 
+
+  isItemPopulated() {
+    return this.selectedItem && this.selectedItem.nombre.trim().length > 0;
   }
 
-  configureGrid() {
-    this.gridOptions = <GridOptions>{};
-    this.columnDefs = [          
-          { headerName: '', field: 'nombre' }
+  private configureGrid() {
+    this.grid.source = {
+        localdata: this.data,
+        datatype: 'json',
+        datafields: [
+            { name: 'id', type: 'int' },
+            { name: 'nombre', type: 'string' },
+            { name: 'email', type: 'string' },
+            { name: 'telefono', type: 'string' },
+            { name: 'activo', type: 'boolean' }
+        ],
+        id: 'id'
+    };
+    this.grid.cols = [
+        { text: 'ID', columngroup: 'id', datafield: 'id', width: '10%' },
+        { text: 'Nombre', columngroup: 'nombre', datafield: 'nombre' }
     ];
-    this.filteredData = this.getData();    
+    this.grid.grid.attrPageable = false;
+    this.grid.grid.attrAutoheight = false;
+}
+
+  private isNameRepeated(){     
+    const item = this.selectedItem;
+    return this.data.find(x => x.id !== item.id && x.nombre.trim().toLowerCase() === item.nombre.trim().toLowerCase());
   }
+   
+  private clearSelection() {
+      this.grid.grid.clearselection();
+      this.selectedItem = new GenericItem();
+  } 
 
   getData() {
       return [
