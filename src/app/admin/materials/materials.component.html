@@ -1,59 +1,65 @@
-<form>
-    <div class="row">
-        <div class="col-md-6">
-            <label for="filterTxt">Filtro</label>
-            <input type="text" id="filterTxt" (input)="filterChanged($event)" />
-
-            <ag-grid-angular style="width: 80%; height: 300px;" class="ag-fresh"
-                            rowSelection="single"
-                            [rowData]="filteredData"
-                            [columnDefs]="columnDefs"
-                            [gridOptions]="gridOptions"                                                        
-                            (rowSelected)="selectRow($event)"                            
-                            (gridReady)="onGridReady($event)" >
-            </ag-grid-angular>
-        </div>
-        <div class="col-md-6">            
-            <h3>Detalle</h3>
-            <div class="form-group">
-                <label for="idTxt">ID</label>
-                <label id="idTxt">{{selectedItem.id}}</label>
-            </div> 
-            <div class="form-group">
-                <label for="nombreTxt">Nombre</label>
-                <input type="text" id="nombreTxt" [(value)]="selectedItem.nombre"/>
-            </div>
-            <div class="form-group">
-                <label for="baseTxt">Base</label>
-                <input type="text" id="baseTxt" [(value)]="selectedItem.base"/>
-            </div>
-            <div class="form-group">
-                <label for="alturaTxt">Altura</label>
-                <input type="text" id="alturaTxt" [(value)]="selectedItem.altura"/>
-            </div>
-            <div class="form-group">
-                <label for="activoTxt">Activo</label>
-                <input type="checkbox" id="activoTxt" [(checked)]="selectedItem.activo"/>
-            </div>            
-            <div class="card">
-                <div class="card-block">
-                    <h4 class="card-title">Inventario</h4>
-                    <div class="form-group">
-                        <label for="codigoInventarioTxt">Código</label>
-                        <input type="text" id="codigoInventarioTxt" [(value)]="selectedItem.codigoInventario"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="costoInventarioTxt">Costo</label>
-                        <input type="text" id="costoInventarioTxt" [(value)]="selectedItem.costoInventario"/>
-                    </div>
-                </div>
-            </div>            
-            <div class="form-group">
-                <button class="btn btn-primary"><i class="fa fa-ban" aria-hidden="true"></i></button>
-                <button class="btn btn-primary"><i class="fa fa-file-o" aria-hidden="true"></i></button>
-                <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                <button class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-            </div>      
-        </div>
-    </div>
-</form>
+<div class="row">
+  <div class="col-md-12">
+      <div class="card">
+          <div class="card-header">
+              <div class="row">
+                  <div class="col-md-6">
+                      <h4 class="card-title">
+                          Listado de materiales
+                      </h4>
+                  </div>
+              </div>
+          </div>
+          <div class="card-body">
+              <div class="row">
+                  <div class="col">
+                      <app-grid #grid (onRowSelected)="rowSelected($event)"></app-grid>                        
+                  </div>
+                  <div class="col">
+                      <h4 class="card-title">
+                          Detalle
+                      </h4>
+                      <div class="form-group">
+                          <label for="nombreTxt">Nombre</label>
+                          <input class="form-control" type="text" id="nombreTxt" [(ngModel)]="selectedItem.nombre" maxlength="50"/>
+                      </div>
+                      <div class="form-group">
+                          <label for="baseTxt">Base</label>
+                          <input class="form-control" type="text" id="baseTxt" [(ngModel)]="selectedItem.base"/>
+                      </div>
+                      <div class="form-group">
+                          <label for="alturaTxt">Altura</label>
+                          <input class="form-control" type="text" id="alturaTxt" [(ngModel)]="selectedItem.altura"/>
+                      </div>
+                      <div class="form-group">
+                          <label for="activoTxt">Activo</label>
+                          <input type="checkbox" id="activoTxt" [(ngModel)]="selectedItem.activo"/>
+                      </div>            
+                      <div class="card">
+                          <div class="card-block">
+                              <h4 class="card-title">Inventario</h4>
+                              <div class="form-group">
+                                  <label for="codigoInventarioTxt">Código</label>
+                                  <input class="form-control" type="text" id="codigoInventarioTxt" [(value)]="selectedItem.codigoInventario"/>
+                              </div>
+                              <div class="form-group">
+                                  <label for="costoInventarioTxt">Costo</label>
+                                  <input class="form-control" type="text" id="costoInventarioTxt" [(value)]="selectedItem.costoInventario"/>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="card-footer">
+              <div class="col-md-12">
+                  <p style="text-align: right">
+                      <button class="btn btn-primary" [disabled]="!isItemPopulated()" title="Nuevo" (click)="cancel()"><i class="fa fa-file-o" aria-hidden="true"></i></button>
+                      <button class="btn btn-danger" [disabled]="!isItemPopulated()" title="Borrar" (click)="delete()"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                      <button class="btn btn-primary" [disabled]="!isItemPopulated()" title="Guardar" (click)="save()"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

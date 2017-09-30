@@ -8,16 +8,17 @@ import { GridOptions } from '../../common/gridOptions';
 import { NgModel } from '@angular/forms';
 
 @Component({
-    selector: 'app-lines',
-    templateUrl: './lines.component.html',
-    styleUrls: ['./lines.component.scss']
+  selector: 'app-lines',
+  templateUrl: './lines.component.html',
+  styleUrls: ['./lines.component.scss']
 })
 
 export class LinesComponent implements OnInit {
-  @ViewChild('linesGrid') linesGrid: GridComponent;
+  @ViewChild('grid') grid: GridComponent;
   selectedItem: GenericItem = new GenericItem();
   dialogService: DialogService;
   data: any[];
+  readonly entityName = 'Línea';  
 
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, dialogService: DialogService) {
       this.toastr.setRootViewContainerRef(vcr);
@@ -34,39 +35,39 @@ export class LinesComponent implements OnInit {
   }
 
   cancel() {
-      if (this.isItemPopulated()) {
-          this.clearSelection();
-          this.toastr.info('Nueva Línea!');
-      }
+    if (this.isItemPopulated()) {
+        this.clearSelection();
+        this.toastr.info(`Nueva ${this.entityName}!`);
+    }
   }
 
   save(){
     const name = this.selectedItem.nombre;
     if (this.isNameRepeated())
-      this.toastr.error(`La línea "${name}" está repetida`, 'Línea repetida');  
+      this.toastr.error(`La ${this.entityName} "${name}" está repetida`, 'Item repetido');
     else    
-      this.toastr.success(`La línea "${name}" fue guardada`, 'Guardar');
-  }  
+      this.toastr.success(`La ${this.entityName} "${name}" fue guardado`, 'Guardar');
+  }    
 
   delete() {
       this.dialogService.addDialog(ConfirmComponent, {
           title: 'Confirmación',
-          message: `¿Está seguro(a) de borrar la línea "${this.selectedItem.nombre}"?`
+          message: `¿Está seguro(a) de borrar la ${this.entityName.toLowerCase()} "${this.selectedItem.nombre}"?`
       })
           .subscribe((isConfirmed) => {
               if (isConfirmed) {
                   this.clearSelection();
-                  this.toastr.success('Línea borrada exitosamente', 'Borrado');
+                  this.toastr.success(`${this.entityName} borrada exitosamente`, 'Borrado');
               }
           });
-  }
+  } 
 
   isItemPopulated() {
     return this.selectedItem && this.selectedItem.nombre.trim().length > 0;
   }
 
   private configureGrid() {
-    this.linesGrid.source = {
+    this.grid.source = {
         localdata: this.data,
         datatype: 'json',
         datafields: [
@@ -75,12 +76,12 @@ export class LinesComponent implements OnInit {
         ],
         id: 'id'
     };
-    this.linesGrid.cols = [
+    this.grid.cols = [
         { text: 'ID', columngroup: 'id', datafield: 'id', width: '10%' },
         { text: 'Nombre', columngroup: 'nombre', datafield: 'nombre' }
     ];
-    this.linesGrid.grid.attrPageable = false;
-    this.linesGrid.grid.attrAutoheight = false;
+    this.grid.grid.attrPageable = false;
+    this.grid.grid.attrAutoheight = false;
 }
 
   private isNameRepeated(){     
@@ -89,10 +90,10 @@ export class LinesComponent implements OnInit {
   }
    
   private clearSelection() {
-      this.linesGrid.grid.clearselection();
+      this.grid.grid.clearselection();
       this.selectedItem = new GenericItem();
   }  
-
+  
   private getData() {
       return [
           {
