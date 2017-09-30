@@ -1,4 +1,49 @@
-<form>
+<div class="row">
+  <div class="col-md-12">
+      <div class="card">
+          <div class="card-header">
+              <div class="row">
+                  <div class="col-md-6">
+                      <h4 class="card-title">
+                          Listado de empresas
+                      </h4>
+                  </div>
+              </div>
+          </div>
+          <div class="card-body">
+              <div class="row">
+                  <div class="col">
+                      <app-grid #grid (onRowSelected)="rowSelected($event)"></app-grid>                        
+                  </div>
+                  <div class="col">
+                      <h4 class="card-title">
+                          Detalle
+                      </h4>                      
+                      <div class="form-group">
+                        <label for="nombreTxt">Nombre</label>
+                        <input class="form-control" type="text" id="nombreTxt" [(ngModel)]="selectedItem.nombre" maxlength="50"/>
+                      </div>                      
+                      <div class="form-group">
+                          <label for="activoTxt">Activo</label>
+                          <input type="checkbox" id="activoTxt" [(ngModel)]="selectedItem.activo"/>
+                      </div>                         
+                  </div>
+              </div>
+          </div>
+          <div class="card-footer">
+              <div class="col-md-12">
+                  <p style="text-align: right">
+                      <button class="btn btn-primary" [disabled]="!isItemPopulated()" title="Nuevo" (click)="cancel()"><i class="fa fa-file-o" aria-hidden="true"></i></button>
+                      <button class="btn btn-danger" [disabled]="!isItemPopulated()" title="Borrar" (click)="delete()"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                      <button class="btn btn-primary" [disabled]="!isItemPopulated()" title="Guardar" (click)="save()"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- <form>
     <div class="row">
         <div class="col-md-6">
             <label for="filterTxt">Filtro</label>
@@ -37,4 +82,4 @@
     </div>
 </form>
 
-
+ -->

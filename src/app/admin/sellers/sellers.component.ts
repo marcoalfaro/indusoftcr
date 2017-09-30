@@ -1,5 +1,4 @@
 import { Component, ViewChild, AfterViewInit, OnInit, Input, ViewContainerRef } from '@angular/core';
-import { GenericItem } from '../../models/genericItem';
 import { GridComponent } from '../../common/grid/grid.component';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ConfirmComponent } from '../../common/confirm.component';
@@ -14,7 +13,7 @@ import { Seller } from 'app/models/seller';
 })
 export class SellersComponent implements OnInit {  
   @ViewChild('grid') grid: GridComponent;
-  selectedItem: GenericItem = new GenericItem();
+  selectedItem: Seller = new Seller();
   dialogService: DialogService;
   data: any[];
   readonly entityName = 'Vendedor';  
@@ -93,7 +92,7 @@ export class SellersComponent implements OnInit {
    
   private clearSelection() {
       this.grid.grid.clearselection();
-      this.selectedItem = new GenericItem();
+      this.selectedItem = new Seller();
   } 
 
   getData() {

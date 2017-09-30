@@ -1,5 +1,4 @@
 import { Component, ViewChild, AfterViewInit, OnInit, Input, ViewContainerRef } from '@angular/core';
-import { GenericItem } from '../../models/genericItem';
 import { GridComponent } from '../../common/grid/grid.component';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ConfirmComponent } from '../../common/confirm.component';
