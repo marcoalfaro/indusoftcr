@@ -77,7 +77,7 @@ export class CompaniesComponent implements OnInit {
     };
     this.grid.cols = [
         { text: 'ID', columngroup: 'id', datafield: 'id', width: '10%' },
-        { text: 'Nombre', columngroup: 'nombre', datafield: 'nombre' }
+        { text: 'Nombre', columngroup: 'nombre', datafield: 'nombre', width: '90%' }
     ];
     this.grid.grid.attrPageable = false;
     this.grid.grid.attrAutoheight = false;
