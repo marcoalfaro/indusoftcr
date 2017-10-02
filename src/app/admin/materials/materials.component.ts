@@ -4,7 +4,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ConfirmComponent } from '../../common/confirm.component';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { NgModel } from '@angular/forms';
-import { Material } from '../../Models/Material';
+import { Material } from '../../models/material';
 
 @Component({
   selector: 'app-materials',
