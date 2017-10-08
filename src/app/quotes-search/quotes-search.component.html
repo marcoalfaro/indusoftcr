@@ -1,0 +1,82 @@
+<div class="card">
+  <div class="card-block">
+    <h4 class="card-title">Filtros</h4>
+    <form class="form">
+      <div class="row">        
+        <div class="form-group">            
+          <label for="customerCb">Cliente</label>          
+          <input class="form-control" name="customerCb" type="text" [(ngModel)]="model" [ngbTypeahead]="searchCustomers"/>          
+        </div>                 
+        <div class="form-group">            
+          <label for="customerCb">Vendedor</label>          
+          <input class="form-control" name="customerCb" type="text" [(ngModel)]="model" [ngbTypeahead]="searchCustomers"/>
+        </div>
+        <div class="form-group">            
+          <label for="customerCb">Línea</label>          
+          <input class="form-control" name="customerCb" type="text" [(ngModel)]="model" [ngbTypeahead]="searchCustomers"/>
+        </div>
+        <div class="form-group">
+          <label for="sinceDatePicker">Desde</label>  
+          <div class="input-group">                      
+            <input class="form-control" placeholder="yyyy-mm-dd" name="sinceDatePicker" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+            <button class="input-group-addon" (click)="d.toggle()" type="button">          
+              <i class="fa fa-calendar" aria-hidden="true" style="cursor: pointer;"></i>
+            </button>        
+          </div>  
+        </div>
+        <div class="form-group">
+          <label for="toDatePicker">Hasta</label>
+          <div class="input-group">          
+            <input class="form-control" placeholder="yyyy-mm-dd" name="toDatePicker" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+            <button class="input-group-addon" (click)="d.toggle()" type="button">          
+              <i class="fa fa-calendar" aria-hidden="true" style="cursor: pointer;"></i>
+            </button>        
+          </div>                    
+        </div>        
+      </div>
+      <div class="row">       
+        <button class="btn btn-primary float-right" title="Buscar" (click)="cancel()"><i class="fa fa-search" aria-hidden="true"></i>  Buscar</button>        
+      </div>        
+    </form>     
+  </div>
+</div>
+<div>
+  <app-grid #grid></app-grid>
+</div>
+
+<!-- 
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-6">
+            <h4 class="card-title">
+              Listado de lineas
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <app-grid #grid (onRowSelected)="rowSelected($event)"></app-grid>
+          </div>
+          <div class="col">
+            <h4 class="card-title">
+              Detalle
+            </h4>
+            <input class="form-control" placeholder="Nombre" aria-label="Nombre" [(ngModel)]="selectedItem.nombre" maxlength="50">
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="float-right">
+          <button class="btn btn-primary" [disabled]="!isItemPopulated()" title="Nuevo" (click)="cancel()"><i class="fa fa-file-o" aria-hidden="true"></i></button>
+          <button class="btn btn-danger" [disabled]="!isItemPopulated()" title="Borrar" (click)="delete()"><i class="fa fa-trash" aria-hidden="true"></i></button>
+          <button class="btn btn-primary" [disabled]="!isItemPopulated()" title="Guardar" (click)="save()"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div> -->

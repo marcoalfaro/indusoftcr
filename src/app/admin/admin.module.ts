@@ -6,7 +6,6 @@ import { AdminComponent } from './admin.component';
 import { AgGridModule } from 'ag-grid-angular/main';
 import { CompanyConfigComponent } from './company-config/company-config.component';
 
-
 import { SharedModule } from '../common/shared.module';
 
 @NgModule({

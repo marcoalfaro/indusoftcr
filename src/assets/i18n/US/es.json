@@ -28,8 +28,8 @@
       "configuration": "Configuración",      
       "sellers": "Vendedores",
       "lines": "Líneas",
-      "quotation": "Cotizaciones",  
-
+      "quotation": "Cotización",  
+      "searchQuote": "Buscar Cotización", 
       "ui_features": "UI Features",
       "typography": "Typography",
       "buttons": "Buttons",

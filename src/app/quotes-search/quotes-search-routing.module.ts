@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { QuotesComponent } from './quotes.component';
+import { QuotesSearchComponent } from './quotes-search.component';
 
-const routes: Routes = [    
+const routes: Routes = [  
   {
     path: '', 
-    component: QuotesComponent
+    component: QuotesSearchComponent
   }
 ];
 
@@ -16,5 +16,5 @@ const routes: Routes = [
 export class QuotesRoutingModule { }
 
 export const routedComponents = [
-  QuotesComponent 
+  QuotesSearchComponent 
 ];

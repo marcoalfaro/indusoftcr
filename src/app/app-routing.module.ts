@@ -6,8 +6,9 @@ export const routes: Routes = [
     { path: '', redirectTo: '/dashboard', pathMatch: 'full' },    
     { path: 'dashboard', component: DashboardComponent },
     { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule' },
-    { path: 'quotes', loadChildren: 'app/quotes/quotes.module#QuotesModule' },
-    // { path: '**', redirectTo: 'dashboard' } 
+    { path: 'quotes', loadChildren: 'app/quotes/quotes.module#QuotesModule' },    
+    { path: 'quotesSearch', loadChildren: 'app/quotes-search/quotes-search.module#QuotesSearchModule' },
+    { path: '**', redirectTo: 'dashboard' } 
 ];
 
 @NgModule({

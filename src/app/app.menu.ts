@@ -8,7 +8,7 @@ export const APP_MENU = [
           menu: {
             title: 'general.menu.dashboard',
             icon: 'ion-android-home',
-            selected: false,
+            selected: true,
             expanded: false,
             order: 0
           }
@@ -22,7 +22,7 @@ export const APP_MENU = [
             icon: 'ion-ios-settings-strong',
             selected: false,
             expanded: false,
-            order: 200,
+            order: 100,
           }
         },
         children: [
@@ -44,8 +44,20 @@ export const APP_MENU = [
             expanded: false,
             order: 200,
           }
-        }       
-      }      
+        }     
+      },
+      {
+        path: 'quotesSearch',
+        data: {
+          menu: {
+            title: 'general.menu.searchQuote',
+            icon: 'ion-search',
+            selected: false,
+            expanded: false,
+            order: 300,
+          }
+        }     
+      }            
     ]
   }
 ];
