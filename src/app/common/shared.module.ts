@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GridComponent } from './grid/grid.component';
 import { jqxGridComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxgrid';
+import { IndusoftService } from 'app/common/indusoft-service/indusoft.service';
 
 @NgModule({
   imports: [
@@ -21,6 +22,9 @@ import { jqxGridComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxgr
     GridComponent,
     jqxGridComponent,
     NgbModule
+  ],
+  providers:[
+    IndusoftService
   ]
 })
 export class SharedModule { }

@@ -44,6 +44,8 @@
         "../node_modules/chroma-js/chroma.js",
         "../node_modules/jqwidgets-framework/jqwidgets/jqxcore.js",
         "../node_modules/jqwidgets-framework/jqwidgets/jqxgrid.js",
+        "../node_modules/jqwidgets-framework/jqwidgets/jqxcalendar.js",
+        "../node_modules/jqwidgets-framework/jqwidgets/jqxdatetimeinput.js",
         "../node_modules/jqwidgets-framework/jqwidgets/jqxdata.js",
         "../node_modules/jqwidgets-framework/jqwidgets/jqxbuttons.js",
         "../node_modules/jqwidgets-framework/jqwidgets/jqxscrollbar.js",
