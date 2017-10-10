@@ -53,8 +53,8 @@ export class QuotesSearchComponent implements OnInit {
       };
       this.grid.cols = [
           { text: 'ID', columngroup: 'id', datafield: 'id', cellsrenderer: this.linkrenderer, width: '10%' },                    
-          { text: 'Línea', columngroup: 'lineanombre', datafield: 'lineanombre', width: '35%' },          
-          { text: 'Cliente', columngroup: 'clientenombre', datafield: 'clientenombre', width: '35%' },
+          { text: 'Línea', columngroup: 'lineanombre', datafield: 'lineanombre', width: '30%' },          
+          { text: 'Cliente', columngroup: 'clientenombre', datafield: 'clientenombre', width: '40%' },
           { text: 'Cantidad', columngroup: 'cantidad', datafield: 'cantidad', cellsformat: 'n', cellsalign: 'right', width: '10%' },
           { text: 'Fecha', columngroup: 'fecha', datafield: 'fecha', cellsformat: 'yyyy-MM-dd', cellsalign: 'center', width: '10%' }          
       ];
