@@ -1,4 +1,7 @@
-export class GenericItem {
+
+import { IIdentifiable } from '../common/iidentifiable';
+
+export class GenericItem implements IIdentifiable {
     id: number;
     nombre: string;
     

@@ -5,29 +5,39 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ConfirmComponent } from '../../common/confirm.component';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { NgModel } from '@angular/forms';
+import { LinesService } from './lines.service';
 
 @Component({
   selector: 'app-lines',
   templateUrl: './lines.component.html',
-  styleUrls: ['./lines.component.scss']
+  styleUrls: ['./lines.component.scss'],
+  providers: [LinesService]
 })
-
 export class LinesComponent implements OnInit {
   @ViewChild('grid') grid: GridComponent;
   selectedItem: GenericItem = new GenericItem();
   dialogService: DialogService;
-  data: any[];
+  service: LinesService;
+  data: GenericItem[];
   readonly entityName = 'Línea';  
 
-  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, dialogService: DialogService) {
+  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, dialogService: DialogService, service: LinesService) {
       this.toastr.setRootViewContainerRef(vcr);
       this.dialogService = dialogService;
+      this.service = service;
+      this.service.loadAll();    
   }
 
-  ngOnInit() {
-    this.data = this.getData();  
+  ngOnInit(){
     this.configureGrid();
-  } 
+    this.service.items.subscribe(lines => { 
+      if (lines.length > 0){
+        this.data = lines;
+        this.grid.source.localdata = this.data;
+        this.grid.updatebounddata();
+      }
+    });
+  }
 
   rowSelected(event): void {
       this.selectedItem = event.args.row;
@@ -66,6 +76,7 @@ export class LinesComponent implements OnInit {
   }
 
   private configureGrid() {
+    console.log(this.data);
     this.grid.source = {
         localdata: this.data,
         datatype: 'json',
@@ -81,10 +92,10 @@ export class LinesComponent implements OnInit {
     ];
     this.grid.grid.attrPageable = false;
     this.grid.grid.attrAutoheight = false;
-}
+  }
 
   private isNameRepeated(){     
-    const item = this.selectedItem;
+    const item = this.selectedItem;    
     return this.data.find(x => x.id !== item.id && x.nombre.trim().toLowerCase() === item.nombre.trim().toLowerCase());
   }
    
@@ -92,121 +103,4 @@ export class LinesComponent implements OnInit {
       this.grid.grid.clearselection();
       this.selectedItem = new GenericItem();
   }  
-  
-  private getData() {
-      return [
-          {
-              'id': 23,
-              'nombre': 'Ambientadores'
-          },
-          {
-              'id': 19,
-              'nombre': 'BANDERINES'
-          },
-          {
-              'id': 1,
-              'nombre': 'Calcomanías'
-          },
-          {
-              'id': 14,
-              'nombre': 'Calendario de Escritorio'
-          },
-          {
-              'id': 16,
-              'nombre': 'Calendarios de bolsillo.'
-          },
-          {
-              'id': 12,
-              'nombre': 'Cintillos'
-          },
-          {
-              'id': 29,
-              'nombre': 'Dangles'
-          },
-          {
-              'id': 8,
-              'nombre': 'Escuadra Isósceles'
-          },
-          {
-              'id': 28,
-              'nombre': 'Etiquetas'
-          },
-          {
-              'id': 4,
-              'nombre': 'EXHIBIDOR'
-          },
-          {
-              'id': 26,
-              'nombre': 'FICHAS'
-          },
-          {
-              'id': 9,
-              'nombre': 'Habladores'
-          },
-          {
-              'id': 25,
-              'nombre': 'IMPRESIONES'
-          },
-          {
-              'id': 18,
-              'nombre': 'Llaveros'
-          },
-          {
-              'id': 17,
-              'nombre': 'MAGNETICOS'
-          },
-          {
-              'id': 5,
-              'nombre': 'PLACAS'
-          },
-          {
-              'id': 22,
-              'nombre': 'Portabrochure'
-          },
-          {
-              'id': 24,
-              'nombre': 'PORTACUBOS'
-          },
-          {
-              'id': 20,
-              'nombre': 'PORTAMENUES'
-          },
-          {
-              'id': 3,
-              'nombre': 'PORTAPLATOS'
-          },
-          {
-              'id': 2,
-              'nombre': 'Posa vasos'
-          },
-          {
-              'id': 7,
-              'nombre': 'Reglas'
-          },
-          {
-              'id': 6,
-              'nombre': 'ROTULOS'
-          },
-          {
-              'id': 15,
-              'nombre': 'Separadores'
-          },
-          {
-              'id': 21,
-              'nombre': 'SERVILLETEROS'
-          },
-          {
-              'id': 13,
-              'nombre': 'Tarjetas'
-          },
-          {
-              'id': 10,
-              'nombre': 'Transportador'
-          },
-          {
-              'id': 27,
-              'nombre': 'Viceras'
-          }
-      ];
-  }
 }

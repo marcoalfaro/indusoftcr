@@ -43,4 +43,7 @@ export class GridComponent implements OnInit, AfterViewInit {
     this.onRowSelected.emit(event);
   }
 
+  updatebounddata(): void {    
+    this.grid.updatebounddata();    
+  }
 }

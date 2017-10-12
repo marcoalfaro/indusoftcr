@@ -30,9 +30,10 @@ const routes: Routes = [
 export class AdminRoutingModule { }
 
 export const routedComponents = [ 
-  CompaniesComponent, 
+  CompaniesComponent,
+  CompanyConfigComponent, 
   CustomersComponent, 
   LinesComponent, 
   MaterialsComponent, 
-  SellersComponent 
+  SellersComponent
 ];
