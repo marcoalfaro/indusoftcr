@@ -30,9 +30,9 @@ export class LinesComponent implements OnInit {
 
   ngOnInit(){
     this.configureGrid();
-    this.service.items.subscribe(lines => { 
-      if (lines.length > 0){
-        this.data = lines;
+    this.service.items.subscribe(items => { 
+      if (items.length > 0){
+        this.data = items;
         this.grid.source.localdata = this.data;
         this.grid.updatebounddata();
       }
@@ -75,8 +75,7 @@ export class LinesComponent implements OnInit {
     return this.selectedItem && this.selectedItem.nombre.trim().length > 0;
   }
 
-  private configureGrid() {
-    console.log(this.data);
+  private configureGrid() {    
     this.grid.source = {
         localdata: this.data,
         datatype: 'json',

@@ -5,27 +5,38 @@ import { ConfirmComponent } from '../../common/confirm.component';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { NgModel } from '@angular/forms';
 import { Company } from '../../models/company';
+import { CompaniesService } from './companies.service';
 
 @Component({
   selector: 'app-companies',
   templateUrl: './companies.component.html',
-  styleUrls: ['./companies.component.scss']
+  styleUrls: ['./companies.component.scss'],
+  providers: [CompaniesService]
 })
 export class CompaniesComponent implements OnInit {  
   @ViewChild('grid') grid: GridComponent;
   selectedItem: Company = new Company();
   dialogService: DialogService;
+  service: CompaniesService;
   data: any[];
   readonly entityName = 'Empresa';  
 
-  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, dialogService: DialogService) {
-      this.toastr.setRootViewContainerRef(vcr);
-      this.dialogService = dialogService;
+  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, dialogService: DialogService, service: CompaniesService) {
+    this.toastr.setRootViewContainerRef(vcr);
+    this.dialogService = dialogService;
+    this.service = service;
+    this.service.loadAll();
   }
 
   ngOnInit() {
-    this.data = this.getData();  
     this.configureGrid();
+    this.service.items.subscribe(items => { 
+      if (items.length > 0){
+        this.data = items;
+        this.grid.source.localdata = this.data;
+        this.grid.updatebounddata();
+      }
+    });
   } 
 
   rowSelected(event): void {
@@ -92,19 +103,4 @@ export class CompaniesComponent implements OnInit {
       this.grid.grid.clearselection();
       this.selectedItem = new Company();
   } 
-
-  getData() {
-      return [          
-        {
-          'nombre': 'Empresa #1',
-          'id': 1,
-          'activo': true
-        },
-        {
-          'nombre': 'Otra Empresa',
-          'id': 2,
-          'activo': false
-        }
-    ];
-  }
 }
