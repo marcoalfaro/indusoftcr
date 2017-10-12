@@ -1,34 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Configuration } from 'app/models/configuration';
+import { CompanyConfigService } from './company-config.service';
 
 @Component({
   selector: 'app-company-config',
   templateUrl: './company-config.component.html',
-  styleUrls: ['./company-config.component.scss']
+  styleUrls: ['./company-config.component.scss'],
+  providers: [CompanyConfigService]
 })
 export class CompanyConfigComponent implements OnInit {
-  selectedItem: Configuration = new Configuration();
+  model: Configuration = new Configuration();
+  service: CompanyConfigService;
 
-  constructor() { }
+  constructor(service: CompanyConfigService) {
+    this.service = service;
+    this.service.load(1);    
+  }
 
   ngOnInit() {
-    this.selectedItem = {
-        'cedula': '9-999-9999',
-        'direccion': 'San José. 150Norte del Estadio Nacional',
-        'telefono': '12345678',
-        'email': 'administracion@empresa1.com',
-        'utilidad': 135,
-        'impuestoventa': 13,
-        'precioMolde': 900,
-        'precioTinta': 0.02,
-        'precioPositivo': 2.33,
-        'precioArte': 1000,
-        'precioSolvente': 900,
-        'precioCorte': 1000,
-        'precioVelocidad': 250,
-        'precioHoraImpresion': 2140,        
-        'id': 1,
-        'activo': true
-    };
+    this.service.items.subscribe(items => { 
+      if (items.length > 0){
+        this.model = items[0];
+      }
+    });
   }
 }
