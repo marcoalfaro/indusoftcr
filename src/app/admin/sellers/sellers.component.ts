@@ -5,27 +5,38 @@ import { ConfirmComponent } from '../../common/confirm.component';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { NgModel } from '@angular/forms';
 import { Seller } from 'app/models/seller';
+import { SellersService } from './sellers.service';
 
 @Component({
   selector: 'app-sellers',
   templateUrl: './sellers.component.html',
-  styleUrls: ['./sellers.component.scss']
+  styleUrls: ['./sellers.component.scss'],
+  providers: [SellersService]
 })
 export class SellersComponent implements OnInit {  
   @ViewChild('grid') grid: GridComponent;
   selectedItem: Seller = new Seller();
   dialogService: DialogService;
+  service: SellersService;  
   data: any[];
   readonly entityName = 'Vendedor';  
 
-  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, dialogService: DialogService) {
+  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, dialogService: DialogService, service: SellersService) {
       this.toastr.setRootViewContainerRef(vcr);
       this.dialogService = dialogService;
+      this.service = service;
+      this.service.loadAll();
   }
 
   ngOnInit() {
-    this.data = this.getData();  
     this.configureGrid();
+    this.service.items.subscribe(items => { 
+      if (items.length > 0){
+        this.data = items;
+        this.grid.source.localdata = this.data;
+        this.grid.updatebounddata();
+      }
+    });
   } 
 
   rowSelected(event): void {
@@ -93,82 +104,5 @@ export class SellersComponent implements OnInit {
   private clearSelection() {
       this.grid.grid.clearselection();
       this.selectedItem = new Seller();
-  } 
-
-  getData() {
-      return [
-        {
-            'nombre': 'Geovanni Ugalde',
-            'email': 'gugalde@empresa1.com',
-            'telefono': '390-3817',
-            'beeper': '257-8585',
-            'empresaId': 1,
-            'id': 1,
-            'activo': true
-        },
-        {
-            'nombre': 'Alex Gonzalez',
-            'email': 'agonzalez@empresa1.com',
-            'telefono': '843-7235',
-            'beeper': '257-8585',
-            'empresaId': 1,
-            'id': 2,
-            'activo': true
-        },
-        {
-            'nombre': 'Rafael Zamora',
-            'email': 'rzamora@empresa1.com',
-            'telefono': '356-9917',
-            'beeper': '',
-            'empresaId': 1,
-            'id': 3,
-            'activo': true
-        },
-        {
-            'nombre': 'Nelly Rodriguez Lopez.',
-            'email': 'nrodriguez@empresa1.com',
-            'telefono': '440-4673',
-            'beeper': '',
-            'empresaId': 1,
-            'id': 4,
-            'activo': true
-        },
-        {
-            'nombre': 'Geovanni Ugalde Gómez0',
-            'email': 'gugalde@empresa1.com',
-            'telefono': '390-3917',
-            'beeper': '257-8585',
-            'empresaId': 1,
-            'id': 5,
-            'activo': true
-        },
-        {
-            'nombre': 'Mathew Carrasco  C.',
-            'email': 'mcarrasco@empresa1.com',
-            'telefono': '864-4819',
-            'beeper': '',
-            'empresaId': 1,
-            'id': 6,
-            'activo': true
-        },
-        {
-            'nombre': 'William Guillen Sánchez',
-            'email': 'wguillen@empresa1.com',
-            'telefono': '88-29-710-74',
-            'beeper': '',
-            'empresaId': 1,
-            'id': 7,
-            'activo': true
-        },
-        {
-            'nombre': 'Cibelly Nuñez González',
-            'email': 'cnunez@empresa1.com',
-            'telefono': '8848-5122',
-            'beeper': '',
-            'empresaId': 1,
-            'id': 8,
-            'activo': true
-        }
-    ];
-  }
+  }   
 }
