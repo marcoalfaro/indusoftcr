@@ -5,7 +5,7 @@ export class Configuration {
     telefono: string;
     email: string;
     utilidad: number;
-    impuestoventa: number;
+    impuestoVenta: number;
     precioMolde: number;
     precioTinta: number;
     precioPositivo: number;
@@ -24,7 +24,7 @@ export class Configuration {
         this.telefono = '';
         this.email = '';
         this.utilidad = 0;
-        this.impuestoventa = 0;
+        this.impuestoVenta = 0;
         this.precioMolde = 0;
         this.precioTinta = 0;
         this.precioPositivo = 0;
