@@ -10,7 +10,8 @@ export class GridComponent implements OnInit, AfterViewInit {
   settings: jqwidgets.GridOptions = {};
   source: any = {};
   cols: any[] = [];
-
+  showFilterRow: boolean = false;
+  filterable: boolean = false;
   private dataAdapter: any = {};
 
   @Output() onRowSelected: EventEmitter<Function> = new EventEmitter<Function>();
@@ -32,7 +33,9 @@ export class GridComponent implements OnInit, AfterViewInit {
       enabletooltips: true,
       editable: false,
       scrollmode: '"deferred"',
-      columns: this.cols
+      columns: this.cols,
+      filterable: this.filterable,
+      showfilterrow: this.showFilterRow
     };
     this.grid.createWidget(this.settings);
   }

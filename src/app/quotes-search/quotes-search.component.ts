@@ -8,6 +8,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { IndusoftService } from 'app/common/indusoft-service/indusoft.service';
+import { ILine } from 'app/models/line';
 
 const customers = ['Cliente 1', 'Otro cliente'];
 
@@ -21,15 +23,31 @@ export class QuotesSearchComponent implements OnInit {
   dialogService: DialogService;
   public data: any[];
   public model: any;
-  
-  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, dialogService: DialogService) {
+  public linesName: Array<string> = [];
+
+  constructor(
+    public toastr: ToastsManager, 
+    vcr: ViewContainerRef, 
+    dialogService: DialogService,
+    private service: IndusoftService<ILine>
+    ) {
     this.toastr.setRootViewContainerRef(vcr);
     this.dialogService = dialogService;
   }
 
   ngOnInit() {
     this.data = this.getData();  
+    this.fillLines();
     this.configureGrid();
+  }
+
+  fillLines(): void {
+    this.service.url="http://59dc2477c86a4f00124c57b0.mockapi.io/lineas";
+    this.service.get().subscribe((lines)=> {
+      lines.forEach(line => {
+        this.linesName.push(line.nombre);
+      });
+    })
   }
 
   searchCustomers = (text$: Observable<string>) =>
@@ -51,15 +69,18 @@ export class QuotesSearchComponent implements OnInit {
           ],
           id: 'id'
       };
+
       this.grid.cols = [
           { text: 'ID', columngroup: 'id', datafield: 'id', cellsrenderer: this.linkrenderer, width: '10%' },                    
-          { text: 'Línea', columngroup: 'lineanombre', datafield: 'lineanombre', width: '30%' },          
-          { text: 'Cliente', columngroup: 'clientenombre', datafield: 'clientenombre', width: '40%' },
+          { text: 'Línea', columngroup: 'lineanombre', datafield: 'lineanombre', width: '20%', filtertype:'list', filteritems:this.linesName },          
+          { text: 'Cliente', columngroup: 'clientenombre', datafield: 'clientenombre', width: '35%' },
           { text: 'Cantidad', columngroup: 'cantidad', datafield: 'cantidad', cellsformat: 'n', cellsalign: 'right', width: '10%' },
-          { text: 'Fecha', columngroup: 'fecha', datafield: 'fecha', cellsformat: 'yyyy-MM-dd', cellsalign: 'center', width: '10%' }          
+          { text: 'Fecha', columngroup: 'fecha', datafield: 'fecha', cellsformat: 'yyyy-MM-dd', cellsalign: 'center', filtertype:'range', width: '25%' }          
       ];
       this.grid.grid.attrPageable = false;
       this.grid.grid.attrAutoheight = false;
+      this.grid.showFilterRow = true;
+      this.grid.filterable = true;
   }
 
   linkrenderer = (row: number, column: any, value: any): any => {
