@@ -12,15 +12,15 @@
         "favicon.ico",
         ".htaccess",
         {
-          "glob": "server.js",
-          "input": "../",
+          "glob": "index.js",
+          "input": "./server/",
           "output": "./"
         },
         {
           "glob": "package.json",
-          "input": "../",
+          "input": "./server/",
           "output": "./"
-        }        
+        },        
       ],
       "index": "index.html",
       "main": "main.ts",
