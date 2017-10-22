@@ -1,4 +1,3 @@
-
 import { IIdentifiable } from '../common/iidentifiable';
 
 export class GenericItem implements IIdentifiable {

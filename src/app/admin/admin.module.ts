@@ -4,7 +4,6 @@ import { AdminRoutingModule, routedComponents } from './admin-routing.module';
 import { AdminComponent } from './admin.component'
 import { AgGridModule } from 'ag-grid-angular/main';
 import { SharedModule } from '../common/shared.module';
-import { LinesService } from './lines/lines.service';
 
 @NgModule({
   imports: [
@@ -14,8 +13,7 @@ import { LinesService } from './lines/lines.service';
   ],
   declarations: [
     AdminComponent,
-    routedComponents//,    
-    //LinesService
+    routedComponents
   ]
 })
 

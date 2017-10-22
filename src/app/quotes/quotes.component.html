@@ -1,3 +1,147 @@
-<p>
-  quotes works!
-</p>
+<ng-template #nameTemplate let-r="result" let-t="term">  
+  {{r.nombre}}
+</ng-template>
+
+<form class="form">
+  <div class="form-group">            
+    <label for="customerCb">Cliente</label>          
+    <input class="form-control" name="customerCb" type="text" [(ngModel)]="model.cliente" [ngbTypeahead]="searchCustomers" [inputFormatter]="nameFormatter" [resultTemplate]="nameTemplate"/>
+  </div>  
+  <div class="form-group">
+    <label for="sellerCb">Vendedor</label>          
+    <input class="form-control" name="sellerCb" type="text" [(ngModel)]="model.vendedor" [ngbTypeahead]="searchSellers" [inputFormatter]="nameFormatter" [resultTemplate]="nameTemplate"/>
+  </div>
+  <div class="form-group">
+    <label for="lineCb">Línea</label>          
+    <input class="form-control" name="lineCb" type="text" [(ngModel)]="model.linea" [ngbTypeahead]="searchLines" [inputFormatter]="nameFormatter" [resultTemplate]="nameTemplate"/>
+  </div> 
+
+  <div class="card">
+    <div class=card-block>
+      <h4 class="card-title">Datos de Producto</h4>      
+      <div class="form-group">
+        <label for="materialCb">Material</label>          
+        <input class="form-control" name="materialCb" type="text" [(ngModel)]="model.material" [ngbTypeahead]="searchMaterials" [inputFormatter]="nameFormatter" [resultTemplate]="nameTemplate"/>
+      </div>
+      <div class="form-group">
+        <label for="baseTxt">Base</label>
+        <input class="form-control" type="text" name="baseTxt" [(ngModel)]="model.base" maxlength="50"/>
+      </div>
+      <div class="form-group">
+        <label for="alturaTxt">Altura</label>
+        <input class="form-control" type="text" name="alturaTxt" [(ngModel)]="model.altura" maxlength="50"/>
+      </div>
+      <div class="form-group">
+        <label for="cantidadTxt">Cantidad</label>
+        <input class="form-control" type="text" name="cantidadTxt" [(ngModel)]="model.cantidad" maxlength="50"/>
+      </div>
+      <div class="form-group">
+        <label for="tintasTxt">Tintas</label>
+        <input class="form-control" type="text" name="tintasTxt" [(ngModel)]="model.tintas" maxlength="50"/>
+      </div>      
+      <div class="form-group">
+        <label for="cubrimientoTxt">Cubrimiento</label>
+        <input class="form-control" type="text" name="cubrimientoTxt" [(ngModel)]="model.cubrimiento" maxlength="50"/>
+      </div>
+      <div class="form-group">
+        <label for="montajeTxt">Montaje</label>
+        <input class="form-control" type="text" name="montajeTxt" [(ngModel)]="model.montaje" maxlength="50"/>
+      </div>
+      <div class="form-group">
+        <label for="cuatricromiaTxt">Cuatricromía</label>
+        <input class="form-control" type="text" name="cuatricromiaTxt" [(ngModel)]="model.cuatricromia" maxlength="50"/>
+      </div>
+      <div class="form-group">
+        <label for="troquelTxt">Troquel</label>
+        <input class="form-control" type="text" name="troquelTxt" [(ngModel)]="model.troquel" maxlength="50"/>
+      </div>
+      <div class="form-group">
+        <label for="doblezTxt">Doblez</label>
+        <input class="form-control" type="text" name="doblezTxt" [(ngModel)]="model.doblez" maxlength="50"/>
+      </div>
+      <div class="form-group">
+        <label for="otrosTxt">Otros</label>
+        <input class="form-control" type="text" name="otrosTxt" [(ngModel)]="model.otros" maxlength="50"/>
+      </div>
+      <div class="form-group">
+        <label for="observacionesTxt">Observaciones</label>
+        <textarea class="form-control" name="observacionesTxt" [(ngModel)]="model.observaciones" maxlength="50" rows="5"></textarea>
+      </div>
+
+
+    </div>    
+    <div class="card">
+      <div class=card-block>
+        <h4 class="card-title">Resultados</h4>
+        <div class=card-block>
+          <h4 class="card-title">Precios</h4>
+          <div class="form-group">
+            <label for="materialTxt">Material</label>            
+            <input class="form-control" type="text" name="materialTxt" [(ngModel)]="model.precioMaterial" readonly/>
+          </div>
+          <div class="form-group">
+            <label for="solventesTxt">Solventes</label>
+            <input class="form-control" type="text" name="solventesTxt" [(ngModel)]="model.precioSolvente" readonly/>
+          </div>
+          <div class="form-group">
+            <label for="tintasTxt">Tintas</label>
+            <input class="form-control" type="text" name="tintasTxt" [(ngModel)]="model.precioTintas" readonly/>
+          </div> 
+          <div class="form-group">
+            <label for="impresionTxt">Impresión</label>
+            <input class="form-control" type="text" name="impresionTxt" [(ngModel)]="model.precioImpresion" readonly/>
+          </div>          
+          <div class="form-group">
+            <label for="moldesTxt">Moldes</label>
+            <input class="form-control" type="text" name="moldesTxt" [(ngModel)]="model.precioMolde" readonly/>
+          </div>
+          <div class="form-group">
+            <label for="positivosTxt">Positivos</label>
+            <input class="form-control" type="text" name="positivosTxt" [(ngModel)]="model.precioPositivo" readonly/>
+          </div>
+          <div class="form-group">
+            <label for="arteTxt">Arte</label>
+            <input class="form-control" type="text" name="arteTxt" [(ngModel)]="model.precioArte" readonly/>
+          </div>
+          <div class="form-group">
+            <label for="corteTxt">Corte</label>
+            <input class="form-control" type="text" name="corteTxt" [(ngModel)]="model.precioCorte" readonly/>
+          </div>
+        </div>
+        <div class=card-block>
+          <h4 class="card-title">División del Material</h4>
+          <div class="form-group">
+            <label for="rendimientoTxt">Rendimiento</label>            
+            <input class="form-control" type="text" name="rendimientoTxt" [(ngModel)]="model.rendimiento" readonly/>
+          </div>
+          <div class="form-group">
+            <label for="laminasTxt">Láminas</label>
+            <input class="form-control" type="text" name="laminasTxt" [(ngModel)]="model.laminas" readonly/>
+          </div>
+          <div class="form-group">
+            <label for="anchoTxt">Ancho</label>
+            <input class="form-control" type="text" name="anchoTxt" [(ngModel)]="model.divAncho" readonly/>
+          </div>
+          <div class="form-group">
+            <label for="largoTxt">Largo</label>
+            <input class="form-control" type="text" name="largoTxt" [(ngModel)]="model.divLargo" readonly/>
+          </div>           
+        </div>
+        <div class=card-block>          
+          <div class="form-group">
+            <label for="subtotalTxt">Subtotal</label>            
+            <input class="form-control" type="text" name="subtotalTxt" [(ngModel)]="model.subtotal" readonly/>
+          </div>
+          <div class="form-group">
+            <label for="totalTxt">Total COL</label>
+            <input class="form-control" type="text" name="totalTxt" [(ngModel)]="model.totalCol" readonly/>
+          </div>
+          <div class="form-group">
+            <label for="totalUsdTxt">Total USD</label>
+            <input class="form-control" type="text" name="totalUsdTxt" [(ngModel)]="model.totalUsd" readonly/>
+          </div>          
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

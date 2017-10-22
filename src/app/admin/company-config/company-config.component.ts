@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Configuration } from 'app/models/configuration';
-import { CompanyConfigService } from './company-config.service';
+import { CompanyConfigService } from '../../common/services/company-config.service';
 
 @Component({
   selector: 'app-company-config',

@@ -5,7 +5,7 @@ import { ConfirmComponent } from '../../common/confirm.component';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { NgModel } from '@angular/forms';
 import { Material } from '../../models/material';
-import { MaterialsService } from './materials.service';
+import { MaterialsService } from '../../common/services/materials.service';
 
 @Component({
   selector: 'app-materials',

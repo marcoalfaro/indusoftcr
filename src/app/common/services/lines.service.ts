@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { BaseService } from '../../common/baseservice.service';
+import { BaseService } from '../baseservice.service';
 import { GenericItem } from '../../models/genericItem';
 
 @Injectable()

@@ -5,7 +5,7 @@ import { ConfirmComponent } from '../../common/confirm.component';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { NgModel } from '@angular/forms';
 import { Customer } from '../../models/customer';
-import { CustomersService } from './customers.service';
+import { CustomersService } from '../../common/services/customers.service';
 
 @Component({
   selector: 'app-customers',
