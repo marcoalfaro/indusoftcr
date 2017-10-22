@@ -92,7 +92,7 @@ export class QuotesComponent implements OnInit {
     sample.precioSolvente = 5400;
     sample.rendimiento = 60;
     sample.laminas = 4;
-    sample.observacion = "";
+    sample.observacion = "Estas son las notas de la cotización";
     sample.divLargo = 3.96;
     sample.divAncho = 20.33;    
     sample.id = 5676;    
