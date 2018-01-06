@@ -8,10 +8,11 @@ export class Quote {
   linea: GenericItem;
   fecha: Date;
   precioUnitario: number;
-  subtotal: number;
+  subTotalCrc: number;
+  subTotalUsd: number;
   porcentaje: number;
   totalUsd: number;
-  totalCol: number;
+  totalCrc: number;
   cantidad: number;
   montaje: number;
   base: number;
