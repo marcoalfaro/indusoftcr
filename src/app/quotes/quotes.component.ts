@@ -63,10 +63,11 @@ export class QuotesComponent implements OnInit {
     sample.linea = { id: 1, nombre: "Calcomanías"};
     sample.fecha = new Date("2006-08-24T17:00:10.267");
     sample.precioUnitario = 0;
-    sample.subtotal = 42600.84;
+    sample.subTotalCrc = 42600.84;
+    sample.subTotalUsd = 75.84;
     sample.porcentaje = 0;
     sample.totalUsd = 185.52;
-    sample.totalCol = 95851.89;
+    sample.totalCrc = 95851.89;
     sample.cantidad = 240;
     sample.montaje = 2;
     sample.base = 6;
