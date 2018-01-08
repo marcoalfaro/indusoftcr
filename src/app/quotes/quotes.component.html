@@ -2,22 +2,30 @@
   {{r.nombre}}
 </ng-template>
 
-<form class="form">
+<form class="form" #myForm="ngForm" novalidate>
+  <div>
+      <button class="btn btn-primary" [disabled]="infoProducto.invalid" (click)="alert('cotizar');">Cotizar</button>
+      <button class="btn btn-primary" [disabled]="myForm.invalid" (click)="alert('salvar');">Salvar</button>
+  </div>
   <div class="form-group">            
     <label for="customerCb">Cliente</label>          
-    <input class="form-control" name="customerCb" type="text" [(ngModel)]="model.cliente" [ngbTypeahead]="searchCustomers" [inputFormatter]="nameFormatter" [resultTemplate]="nameTemplate"/>
-  </div>  
-  <div class="form-group">
-    <label for="sellerCb">Vendedor</label>          
-    <input class="form-control" name="sellerCb" type="text" [(ngModel)]="model.vendedor" [ngbTypeahead]="searchSellers" [inputFormatter]="nameFormatter" [resultTemplate]="nameTemplate"/>
+    <input class="form-control" #customerCb="ngModel" name="customerCb" type="text" [(ngModel)]="model.cliente" [ngbTypeahead]="searchCustomers" [inputFormatter]="nameFormatter" [resultTemplate]="nameTemplate" required validateSelection />
+    <display-errors [control]="customerCb"></display-errors>
   </div>
   <div class="form-group">
+    <label for="sellerCb">Vendedor</label>
+    <input class="form-control" #sellerCb="ngModel" name="sellerCb" type="text" [(ngModel)]="model.vendedor" [ngbTypeahead]="searchSellers" [inputFormatter]="nameFormatter" [resultTemplate]="nameTemplate" required validateSelection />
+    <display-errors [control]="sellerCb"></display-errors>
+  </div>  
+      
+  <div class="form-group">
     <label for="lineCb">Línea</label>          
-    <input class="form-control" name="lineCb" type="text" [(ngModel)]="model.linea" [ngbTypeahead]="searchLines" [inputFormatter]="nameFormatter" [resultTemplate]="nameTemplate"/>
+    <input class="form-control" #lineCb="ngModel" name="lineCb" type="text" [(ngModel)]="model.linea" [ngbTypeahead]="searchLines" [inputFormatter]="nameFormatter" [resultTemplate]="nameTemplate" required validateSelection />
+    <display-errors [control]="lineCb"></display-errors>
   </div> 
 
   <div class="card">
-    <div class=card-block>
+    <div class=card-block ngModelGroup="infoProducto" #infoProducto="ngModelGroup">
       <h4 class="card-title">Datos de Producto</h4>
 
       <div class="container">
@@ -26,20 +34,23 @@
             <div class="row">
               <div class="form-group col-lg-12 col-md-12">
                 <label for="materialCb">Material</label>          
-                <input class="form-control" name="materialCb" type="text" [(ngModel)]="model.material" [ngbTypeahead]="searchMaterials" [inputFormatter]="nameFormatter" [resultTemplate]="nameTemplate"/>
+                <input class="form-control" #materialCb="ngModel" name="materialCb" type="text" [(ngModel)]="model.material" [ngbTypeahead]="searchMaterials" [inputFormatter]="nameFormatter" [resultTemplate]="nameTemplate" required validateSelection />
+                <display-errors [control]="materialCb"></display-errors>
               </div>                    
             </div>
             <div class="row">
               <div class="col-lg-6 col-md-6">                       
                 <div class="form-group">
                   <label for="baseTxt">Base</label>
-                  <input class="form-control" type="text" name="baseTxt" [(ngModel)]="model.base" maxlength="50"/>
+                  <input class="form-control" #baseTxt="ngModel" type="text" name="baseTxt" [(ngModel)]="model.base" maxlength="50" required numericValidation />
+                  <display-errors [control]="baseTxt"></display-errors>
                 </div>
               </div>
               <div class="col-lg-6 col-md-6">                 
                 <div class="form-group">
                   <label for="alturaTxt">Altura</label>
-                  <input class="form-control" type="text" name="alturaTxt" [(ngModel)]="model.altura" maxlength="50"/>
+                  <input class="form-control" type="text" #alturaTxt="ngModel" name="alturaTxt" [(ngModel)]="model.altura" maxlength="50" required />
+                  <display-errors [control]="alturaTxt"></display-errors>
                 </div>                    
               </div>
             </div> 
@@ -47,13 +58,15 @@
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label for="cantidadTxt">Cantidad</label>
-                  <input class="form-control" type="text" name="cantidadTxt" [(ngModel)]="model.cantidad" maxlength="50"/>
+                  <input class="form-control" type="text" #cantidadTxt="ngModel" name="cantidadTxt" [(ngModel)]="model.cantidad" maxlength="50" required/>
+                  <display-errors [control]="cantidadTxt"></display-errors>
                 </div>                          
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label for="tintasTxt">Tintas</label>
-                  <input class="form-control" type="text" name="tintasTxt" [(ngModel)]="model.tintas" maxlength="50"/>
+                  <input class="form-control" type="text" #tintasTxt="ngModel" name="tintasTxt" [(ngModel)]="model.tintas" maxlength="50" required />
+                  <display-errors [control]="tintasTxt"></display-errors>
                 </div>                          
               </div>
             </div>
@@ -63,13 +76,15 @@
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label for="cubrimientoTxt">Cubrimiento</label>
-                  <input class="form-control" type="text" name="cubrimientoTxt" [(ngModel)]="model.cubrimiento" maxlength="50"/>
+                  <input class="form-control" type="text" #cubrimientoTxt="ngModel" name="cubrimientoTxt" [(ngModel)]="model.cubrimiento" maxlength="50" required/>
+                  <display-errors [control]="cubrimientoTxt"></display-errors>
                 </div>                                      
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label for="montajeTxt">Montaje</label>
-                  <input class="form-control" type="text" name="montajeTxt" [(ngModel)]="model.montaje" maxlength="50"/>
+                  <input class="form-control" type="text" #montajeTxt="ngModel" name="montajeTxt" [(ngModel)]="model.montaje" maxlength="50" required />
+                  <display-errors [control]="montajeTxt"></display-errors>
                 </div>                                      
               </div>
             </div> 
@@ -77,13 +92,15 @@
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label for="cuatricromiaTxt">Cuatricromía</label>
-                  <input class="form-control" type="text" name="cuatricromiaTxt" [(ngModel)]="model.cuatricromia" maxlength="50"/>
+                  <input class="form-control" type="text" #cuatricromiaTxt="ngModel" name="cuatricromiaTxt" [(ngModel)]="model.cuatricromia" maxlength="50" required />
+                  <display-errors [control]="cuatricromiaTxt"></display-errors>
                 </div>                                      
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label for="troquelTxt">Troquel</label>
-                  <input class="form-control" type="text" name="troquelTxt" [(ngModel)]="model.troquel" maxlength="50"/>
+                  <input class="form-control" type="text" #troquelTxt="ngModel" name="troquelTxt" [(ngModel)]="model.troquel" maxlength="50" required />
+                  <display-errors [control]="troquelTxt"></display-errors>
                 </div>                                                          
               </div>
             </div>                   
@@ -91,7 +108,8 @@
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label for="doblezTxt">Doblez</label>
-                  <input class="form-control" type="text" name="doblezTxt" [(ngModel)]="model.doblez" maxlength="50"/>
+                  <input class="form-control" type="text" #doblezTxt="ngModel" name="doblezTxt" [(ngModel)]="model.doblez" maxlength="50" required />
+                  <display-errors [control]="doblezTxt"></display-errors>
                 </div>                                      
               </div>
               <div class="col-lg-6 col-md-6">
@@ -216,7 +234,7 @@
                       <h4 class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-left font-weight-bold">Costos</h4>
                       <h4 class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center font-weight-bold">Colones</h4>
                       <h4 class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right font-weight-bold">Dólares</h4>
-                    </div>          
+                    </div>
                     <div class="row">
                     <span class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-left">Subtotal:</span>
                     <span class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">₡{{ model.subTotalCrc | number:'1.2-2'}} </span>
