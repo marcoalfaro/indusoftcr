@@ -5,6 +5,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GridComponent } from './grid/grid.component';
 import { jqxGridComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxgrid';
 import { IndusoftService } from 'app/common/indusoft-service/indusoft.service';
+import { DisplayErrorsComponent } from 'app/common/display-validation-errors/display-errors.component';
+import { TypeAheadValidatorDirective } from 'app/common/validators/typeahead-validator.directive';
+import { NumericValidatorDirective } from 'app/common/validators/numeric-validator.directive';
 
 @NgModule({
   imports: [
@@ -14,16 +17,22 @@ import { IndusoftService } from 'app/common/indusoft-service/indusoft.service';
   ],
   declarations: [
     GridComponent, 
-    jqxGridComponent
+    jqxGridComponent,
+    DisplayErrorsComponent,
+    TypeAheadValidatorDirective,
+    NumericValidatorDirective
   ],
   exports: [
     CommonModule,
     FormsModule,
     GridComponent,
     jqxGridComponent,
-    NgbModule
+    NgbModule,
+    DisplayErrorsComponent,
+    TypeAheadValidatorDirective,
+    NumericValidatorDirective
   ],
-  providers:[
+  providers: [
     IndusoftService
   ]
 })
