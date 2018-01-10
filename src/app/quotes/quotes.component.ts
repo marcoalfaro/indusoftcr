@@ -1,4 +1,5 @@
 import { Component, ViewChild, AfterViewInit, OnInit, Input, ViewContainerRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NgModel } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs/Observable';
@@ -14,6 +15,7 @@ import { DialogService } from 'ng2-bootstrap-modal';
 import { CustomersService } from '../common/services/customers.service';
 import { SellersService } from '../common/services/sellers.service';
 import { MaterialsService } from '../common/services/materials.service';
+import { QuotesService } from 'app/quotes/quotes.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -22,7 +24,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
   selector: 'app-quotes',
   templateUrl: './quotes.component.html',
   styleUrls: ['./quotes.component.scss'],
-  providers: [LinesService, CustomersService, SellersService, MaterialsService]
+  providers: [LinesService, CustomersService, SellersService, MaterialsService, QuotesService]
 })
 export class QuotesComponent implements OnInit {
   dialogService: DialogService;
@@ -35,12 +37,20 @@ export class QuotesComponent implements OnInit {
   sellers: Seller[];
   materials: Material[];  
   model: Quote = new Quote();
+  id: number;
+  quotesService: QuotesService;
+  isEdit: boolean = false;
 
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, dialogService: DialogService
-              , linesService: LinesService
-              , customersService: CustomersService
-              , sellersService: SellersService
-              , materialsService: MaterialsService) {
+              ,linesService: LinesService
+              ,customersService: CustomersService
+              ,sellersService: SellersService
+              ,materialsService: MaterialsService
+              ,route: ActivatedRoute
+              ,quotesService: QuotesService) {
+    route.params.subscribe(params => {
+      this.id = +params['id'];
+    });
     this.toastr.setRootViewContainerRef(vcr);
     this.dialogService = dialogService;
     this.linesService = linesService;
@@ -48,13 +58,26 @@ export class QuotesComponent implements OnInit {
     this.sellersService = sellersService;
     this.materialsService = materialsService;
     this.loadDropdowns();
+    this.quotesService = quotesService;
+    if(!isNaN(this.id)){
+      this.isEdit = true;
+      this.quotesService.load(this.id);
+    }
   }
 
   ngOnInit() {
     this.subscribeDropdownsData();
-    this.model = this.getSampleQuote();
+    if(this.isEdit){
+      this.quotesService.items.subscribe(items => { 
+        if (items.length === 1){
+          this.model = items[0];
+        }
+      });
+    }else{
+      this.model = this.getSampleQuote();
+    }
   }
-
+  
   getSampleQuote() {
     const sample = new Quote();
     sample.cliente = { id: 25, nombre: 'CONTRA PUNTO' };
@@ -95,8 +118,8 @@ export class QuotesComponent implements OnInit {
     sample.laminas = 4;
     sample.observacion = 'Estas son las notas de la cotización';
     sample.divLargo = 3.96;
-    sample.divAncho = 20.33;    
-    sample.id = 5676;    
+    sample.divAncho = 20.33;
+    sample.id = 5676;
     return sample;
   }
 
