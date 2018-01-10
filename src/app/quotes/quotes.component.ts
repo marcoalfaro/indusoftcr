@@ -142,6 +142,11 @@ export class QuotesComponent implements OnInit {
     this.materialsService.items.subscribe(items => { this.materials = items; });
   }
 
+  displayTemporalAlert() {
+    this.toastr.error(`Probando`, 'Probando');
+  }    
+  
+
   searchCustomers = (text$: Observable<string>) => text$
     .debounceTime(200).distinctUntilChanged()
     .map(term => term.length < 2 ? 
@@ -170,4 +175,5 @@ export class QuotesComponent implements OnInit {
         .filter(i => i.nombre.toLowerCase().indexOf(term.toLowerCase()) > -1)
         .slice(0, 10)) 
   nameFormatter = (x: {nombre: string}) => x.nombre;
+  
 }
