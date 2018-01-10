@@ -15,7 +15,7 @@ export class BaseService<T extends IIdentifiable> {
 
   constructor(private http: Http, resourceName: string) {
     this.entityName = resourceName;
-    this.baseUrl = `http://59dc2477c86a4f00124c57b0.mockapi.io/${this.entityName}`;    
+    this.baseUrl = `https://59dc2477c86a4f00124c57b0.mockapi.io/${this.entityName}`;    
     this.dataStore = { items: [] };
     this._items = <BehaviorSubject<T[]>>new BehaviorSubject([]);
     this.items = this._items.asObservable();

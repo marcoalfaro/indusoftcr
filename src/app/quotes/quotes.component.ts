@@ -77,19 +77,20 @@ export class QuotesComponent implements OnInit {
       this.model = this.getSampleQuote();
     }
   }
-
-  getSampleQuote(){
-    var sample = new Quote();
-    sample.cliente =  { id: 25, nombre: "CONTRA PUNTO"};
-    sample.vendedor = { id: 3, nombre: "Rafael Zamora"};
-    sample.material = { id: 65, nombre: "POLIESTIRENO #20"};
-    sample.linea = { id: 1, nombre: "Calcomanías"};
-    sample.fecha = new Date("2006-08-24T17:00:10.267");
+  
+  getSampleQuote() {
+    const sample = new Quote();
+    sample.cliente = { id: 25, nombre: 'CONTRA PUNTO' };
+    sample.vendedor = { id: 3, nombre: 'Rafael Zamora' };
+    sample.material = { id: 65, nombre: 'POLIESTIRENO #20' };
+    sample.linea = { id: 1, nombre: 'Calcomanías' };
+    sample.fecha = new Date('2006-08-24T17:00:10.267');
     sample.precioUnitario = 0;
-    sample.subtotal = 42600.84;
+    sample.subTotalCrc = 42600.84;
+    sample.subTotalUsd = 75.84;
     sample.porcentaje = 0;
     sample.totalUsd = 185.52;
-    sample.totalCol = 95851.89;
+    sample.totalCrc = 95851.89;
     sample.cantidad = 240;
     sample.montaje = 2;
     sample.base = 6;
@@ -103,7 +104,7 @@ export class QuotesComponent implements OnInit {
     sample.porcEvento = null;
     sample.aplicada = false;
     sample.fecAplicada = null;
-    sample.fecRegistro = new Date("2006-08-24T17:02:04.263");
+    sample.fecRegistro = new Date('2006-08-24T17:02:04.263');
     sample.numPedido = null;
     sample.precioMaterial = 10396;
     sample.precioTintas = 1506.96;
@@ -115,40 +116,53 @@ export class QuotesComponent implements OnInit {
     sample.precioSolvente = 5400;
     sample.rendimiento = 60;
     sample.laminas = 4;
-    sample.observacion = "Estas son las notas de la cotización";
+    sample.observacion = 'Estas son las notas de la cotización';
     sample.divLargo = 3.96;
     sample.divAncho = 20.33;
     sample.id = 5676;
     return sample;
   }
 
-  loadDropdowns(){
+  loadDropdowns() {
     this.linesService.loadAll();
     this.customersService.loadAll();
     this.sellersService.loadAll();
     this.materialsService.loadAll();    
   }
 
-  subscribeDropdownsData(){
-    this.linesService.items.subscribe(items => { this.lines = items });
-    this.customersService.items.subscribe(items => { this.customers = items });
-    this.sellersService.items.subscribe(items => { this.sellers = items });
-    this.materialsService.items.subscribe(items => { this.materials = items });
+  subscribeDropdownsData() {
+    this.linesService.items.subscribe(items => { this.lines = items; });
+    this.customersService.items.subscribe(items => { this.customers = items; });
+    this.sellersService.items.subscribe(items => { this.sellers = items; });
+    this.materialsService.items.subscribe(items => { this.materials = items; });
   }
 
   searchCustomers = (text$: Observable<string>) => text$
     .debounceTime(200).distinctUntilChanged()
-    .map(term => term.length < 2 ? [] : this.customers.filter(i => i.nombre.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)); 
+    .map(term => term.length < 2 ? 
+      [] : this.customers
+      .filter(i => i.nombre.toLowerCase().indexOf(term.toLowerCase()) > -1)
+      .slice(0, 10)) 
 
   searchLines = (text$: Observable<string>) => text$
       .debounceTime(200).distinctUntilChanged()
-      .map(term => term.length < 2 ? [] : this.lines.filter(i => i.nombre.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)); 
+      .map(term => term.length < 2 ? 
+        [] : this.lines
+        .filter(i => i.nombre.toLowerCase().indexOf(term.toLowerCase()) > -1)
+        .slice(0, 10)) 
 
   searchSellers = (text$: Observable<string>) => text$
       .debounceTime(200).distinctUntilChanged()
-      .map(term => term.length < 2 ? [] : this.sellers.filter(i => i.nombre.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)); 
+      .map(term => term.length < 2 ? 
+        [] : this.sellers
+        .filter(i => i.nombre.toLowerCase().indexOf(term.toLowerCase()) > -1)
+        .slice(0, 10))
+
   searchMaterials = (text$: Observable<string>) => text$
       .debounceTime(200).distinctUntilChanged()
-      .map(term => term.length < 2 ? [] : this.materials.filter(i => i.nombre.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)); 
+      .map(term => term.length < 2 ? 
+        [] : this.materials
+        .filter(i => i.nombre.toLowerCase().indexOf(term.toLowerCase()) > -1)
+        .slice(0, 10)) 
   nameFormatter = (x: {nombre: string}) => x.nombre;
 }
