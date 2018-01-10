@@ -5,8 +5,10 @@ import { IIdentifiable } from './iidentifiable';
 import 'rxjs/add/operator/map';
 
 export class BaseService<T extends IIdentifiable> {
-  items: Observable<T[]>
+  wasNotFound: Observable<boolean>;
+  items: Observable<T[]>;
   private _items: BehaviorSubject<T[]>;
+  private _wasNotFound: BehaviorSubject<boolean>;
   private baseUrl: string;
   private entityName: string;  
   private dataStore: {
@@ -18,7 +20,9 @@ export class BaseService<T extends IIdentifiable> {
     this.baseUrl = `https://59dc2477c86a4f00124c57b0.mockapi.io/${this.entityName}`;    
     this.dataStore = { items: [] };
     this._items = <BehaviorSubject<T[]>>new BehaviorSubject([]);
+    this._wasNotFound = <BehaviorSubject<boolean>>new BehaviorSubject(false);
     this.items = this._items.asObservable();
+    this.wasNotFound = this._wasNotFound.asObservable();
   }
 
   loadAll() {
@@ -44,7 +48,9 @@ export class BaseService<T extends IIdentifiable> {
       }
 
       this._items.next(Object.assign({}, this.dataStore).items);
-    }, error => console.log(`Could not load ${this.entityName}.`));
+    }, error => {
+      this._wasNotFound.next(true);
+    });
   }
 
   create(newItem: T) {

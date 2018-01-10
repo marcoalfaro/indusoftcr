@@ -73,6 +73,11 @@ export class QuotesComponent implements OnInit {
           this.model = items[0];
         }
       });
+      this.quotesService.wasNotFound.subscribe(wasNotFound => {
+        if(wasNotFound){
+          this.toastr.error('La cotización solicitada no se ha encontrado.', 'No encontrada');
+        }
+      })
     }else{
       this.model = this.getSampleQuote();
     }
