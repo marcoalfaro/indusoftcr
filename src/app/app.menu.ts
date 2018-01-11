@@ -43,6 +43,7 @@ export const APP_MENU = [
             selected: false,
             expanded: false,
             order: 200,
+            pathMatch: 'prefix'
           }
         }     
       },
